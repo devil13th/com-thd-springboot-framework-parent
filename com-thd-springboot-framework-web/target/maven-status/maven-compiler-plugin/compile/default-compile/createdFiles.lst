@@ -1,0 +1,3 @@
+com\thd\springboot\framework\configuration\InterceptorConfig.class
+com\thd\springboot\framework\interceptor\WebInterceptor.class
+com\thd\springboot\framework\web\BasicController.class

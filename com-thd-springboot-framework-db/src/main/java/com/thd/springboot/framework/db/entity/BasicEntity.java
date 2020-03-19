@@ -2,7 +2,7 @@ package com.thd.springboot.framework.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.github.pagehelper.Page;
+import com.thd.springboot.framework.model.Page;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -17,8 +17,8 @@ import java.util.Date;
  **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-// public class BasicEntity<T> extends Page implements Serializable {
-public class BasicEntity<T> implements Serializable {
+ public class BasicEntity<T> extends Page implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

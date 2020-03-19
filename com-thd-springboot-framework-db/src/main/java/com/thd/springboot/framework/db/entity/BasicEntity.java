@@ -17,7 +17,8 @@ import java.util.Date;
  **/
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class BasicEntity<T> extends Page implements Serializable {
+// public class BasicEntity<T> extends Page implements Serializable {
+public class BasicEntity<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**

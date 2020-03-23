@@ -101,7 +101,7 @@ public class MysqlTableUtilImpl extends TableUtilImpl {
 
 
 			Column column = Column.createColumn(columnName);
-			column.setDesc(comment);
+			column.setComment(comment);
 			column.setDataType(dataType);
 			// 是否主键
 			column.setIsPk(keyInfo != null && keyInfo.length() > 0 && "PRI".equalsIgnoreCase(keyInfo));

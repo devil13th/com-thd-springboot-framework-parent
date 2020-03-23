@@ -11,26 +11,19 @@ import lombok.Data;
  * @DATE: 2020/3/21 10:47
  **/
 @Data
-public class Column {
+public class Column extends GetterSetterBean{
     // 备注  例如:用户
-    private String desc;
-    // 表名  例如:sys_user
-    private String name;
-    // 表名 - 驼峰  例如:sysUser
-    private String nameCamel;
-    // 表明 - 大驼峰  例如:SysUser
-    private String nameBigCamel;
+    private String comment;
+
     // 是否主键
     private Boolean isPk = false;
     // 是否可以为空
     private Boolean isNullAble = true;
     // 数据类型
     private String dataType;
-    public Column(){}
+
     public Column(String name) {
-        this.name = name;
-        this.nameCamel = ToCamelUtil.toCamel(name);
-        this.nameBigCamel = ToCamelUtil.toBigCamel(name);
+        super(name);
     }
 
 

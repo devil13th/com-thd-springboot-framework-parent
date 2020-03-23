@@ -36,11 +36,14 @@ public class CodeGenUtil implements CodeGen {
 
         String charset = "utf-8";
         File templateFile = new File(templatePath);
+
         File templateFolder = templateFile.getParentFile();
 
         File targetFile = new File(targetPath);
 		File targetFolder = targetFile.getParentFile();
-
+		if(!targetFolder.exists()){
+			targetFolder.mkdirs();
+		}
         //初使化FreeMarker配置
 		Configuration configuration = new Configuration();
 		//设置要解析的模板所在的目录，并加载模板文件
@@ -73,9 +76,7 @@ public class CodeGenUtil implements CodeGen {
 			e1.printStackTrace();
 		}
 
-
 		templateData.setTable(tableUtil.loadTable(tableName));
-
 		try {
 
 			System.err.println(JSONObject.toJSONString(templateData));

@@ -41,6 +41,6 @@ public class GeneratorApplication {
 //        System.out.println(tu);
 
         tu.generator("sys_user");
-        tu.fillData("sys_user","D:\\devil13th\\github\\com-thd-springboot-framework-parent\\com-thd-springboot-framework-generator\\src\\main\\resources\\template\\mybatis\\example.ftl","D:\\deleteme\\cg\\a.txt");
+        tu.fillData("sys_user","D:\\work\\java\\com-thd-springboot-framework-parent\\com-thd-springboot-framework-generator\\src\\main\\resources\\template\\mybatis\\example.ftl","D:\\deleteme\\cg\\a.txt");
     }
 }

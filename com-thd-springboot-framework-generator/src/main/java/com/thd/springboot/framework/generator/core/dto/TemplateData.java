@@ -21,4 +21,5 @@ public class TemplateData {
     private String dbType;
     @Autowired
     private Coding coding;
+
 }

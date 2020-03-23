@@ -14,15 +14,9 @@ import java.util.List;
  * @DATE: 2020/3/21 10:41
  **/
 @Data
-public class Table {
+public class Table  extends GetterSetterBean{
     // 备注  例如:用户
-    private String desc;
-    // 表名  例如:sys_user
-    private String name;
-    // 表名 - 驼峰  例如:sysUser
-    private String nameCamel;
-    // 表明 - 大驼峰  例如:SysUser
-    private String nameBigCamel;
+    private String comment;
     // 主键字段
     private Column pkColumn;
     // 表空间
@@ -32,11 +26,8 @@ public class Table {
     // 非主键字段集合
     private List<Column> normalColumns;
 
-    public Table(){}
     public Table(String name) {
-        this.name = name;
-        this.nameCamel = ToCamelUtil.toCamel(name);
-        this.nameBigCamel = ToCamelUtil.toBigCamel(name);
+        super(name);
     }
 
     public Table(String name,String schema){

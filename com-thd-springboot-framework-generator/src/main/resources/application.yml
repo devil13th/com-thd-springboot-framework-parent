@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    # 注意：MySQL连接驱动和版本都是8.0以上需要添加时区：serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3306/devil13th?serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+schema: devil13th_pm
+logging:
+  config: classpath:logback-spring.xml
+  path: D:/deleteme/logbacks
+
+coding:
+  servicePackageName: serviceP${xxx}ckageName
+  mapperPackageName: mapperPackageName
+  controllerPackageName: controllerPackageName

@@ -14,6 +14,7 @@
         <module>com-thd-springboot-framework-db</module>
         <module>com-thd-springboot-framework-web</module>
         <module>com-thd-springboot-framework-redis</module>
+        <module>com-thd-springboot-framework-generator</module>
     </modules>
     <version>1.0.0-SNAPSHOT</version>
 

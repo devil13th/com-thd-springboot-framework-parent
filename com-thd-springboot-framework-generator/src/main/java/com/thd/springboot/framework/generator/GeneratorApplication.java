@@ -41,6 +41,11 @@ public class GeneratorApplication {
 //        System.out.println(tu);
 
         tu.generator("sys_user");
-        tu.fillData("sys_user","D:\\work\\java\\com-thd-springboot-framework-parent\\com-thd-springboot-framework-generator\\src\\main\\resources\\template\\mybatis\\example.ftl","D:\\deleteme\\cg\\a.txt");
+        //tu.createCode("sys_user","example.ftl","a.txt");
+//        tu.createCode("sys_user","mapper.ftl","b.txt");
+//        tu.createCode("sys_user","entity.ftl","d.txt");
+        tu.createCode("sys_user","dao.ftl","e.txt");
+//        tu.createCode("sys_user","serviceImpl.ftl","f.txt");
+       // tu.createCode("sys_user","dao.ftl","g.txt");
     }
 }

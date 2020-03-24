@@ -26,6 +26,7 @@ public class Table  extends GetterSetterBean{
     // 非主键字段集合
     private List<Column> normalColumns;
 
+
     public Table(String name) {
         super(name);
     }
@@ -39,6 +40,7 @@ public class Table  extends GetterSetterBean{
         Table table = new Table(name,schema);
         return table;
     }
+
 
     public String toString(){
         return JSONObject.toJSONString(this);

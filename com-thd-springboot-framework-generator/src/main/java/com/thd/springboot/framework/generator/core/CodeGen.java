@@ -20,5 +20,5 @@ public interface CodeGen {
      * @param templatePath 模板文件路径
      * @param targetFolderPath 生成文件所在文件夹
      */
-    public void fillData(String tableName,String templatePath,String targetFolderPath)  throws Exception;
+    public void createCode(String tableName,String templatePath,String targetFolderPath)  throws Exception;
 }

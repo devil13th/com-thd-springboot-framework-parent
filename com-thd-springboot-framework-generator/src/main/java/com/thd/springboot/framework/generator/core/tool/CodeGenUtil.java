@@ -32,14 +32,14 @@ public class CodeGenUtil implements CodeGen {
         Table table = this.tableUtil.loadTable(tableName);
     };
 
-    public void fillData(String tableName,String templatePath,String targetPath) throws Exception{
+    public void createCode(String tableName,String templatePath,String targetPath) throws Exception{
 
         String charset = "utf-8";
-        File templateFile = new File(templatePath);
+        File templateFile = new File(templateData.getTemplateFolderPath() + templatePath);
 
         File templateFolder = templateFile.getParentFile();
 
-        File targetFile = new File(targetPath);
+        File targetFile = new File(templateData.getTargetFolderPath() + targetPath);
 		File targetFolder = targetFile.getParentFile();
 		if(!targetFolder.exists()){
 			targetFolder.mkdirs();
@@ -64,7 +64,7 @@ public class CodeGenUtil implements CodeGen {
 			throw new Exception(" target path err !");
 		}
 
-		File outFile = new File(targetPath);
+		File outFile = new File(targetFile.getAbsolutePath());
 		Writer out = null;
 		try {
 			if(charset == null){

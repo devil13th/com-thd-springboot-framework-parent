@@ -19,6 +19,10 @@ public class TemplateData {
     private Db db;
     @Value("MYSQL") // 默认 MYSQL
     private String dbType;
+    @Value("${templateFolderPath}") // 模板目录位置
+    private String templateFolderPath;
+    @Value("${targetFolderPath}") // 文件生成目录位置
+    private String targetFolderPath;
     @Autowired
     private Coding coding;
 

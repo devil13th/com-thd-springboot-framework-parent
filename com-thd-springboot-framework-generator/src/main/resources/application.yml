@@ -7,12 +7,19 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+# 表空间
 schema: devil13th_pm
+# 模板公共路径
+templateFolderPath: D:\devil13th\github\com-thd-springboot-framework-parent\com-thd-springboot-framework-generator\src\main\resources\template\ssm\
+#  生成文件公共路径
+targetFolderPath: D:\deleteme\cg\
+# 包配置
+coding:
+  servicePackageName: com.thd.devil13th.example.service.${table.nameCamel}
+  mapperPackageName: mapperPackageName
+  controllerPackageName: controllerPackageName
+  entityPackageName: com.thd.devil13th.example.entity
 logging:
   config: classpath:logback-spring.xml
   path: D:/deleteme/logbacks
 
-coding:
-  servicePackageName: serviceP${xxx}ckageName
-  mapperPackageName: mapperPackageName
-  controllerPackageName: controllerPackageName

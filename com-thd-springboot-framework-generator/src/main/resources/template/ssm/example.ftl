@@ -11,6 +11,7 @@ ${get}table.setter} ${table.setter}
 ${get}table.pkColumn.name} ${table.pkColumn.name}
 ${get}table.pkColumn.nameCamel} ${table.pkColumn.nameCamel}
 ${get}table.pkColumn.nameBigCamel} ${table.pkColumn.nameBigCamel}
+${get}table.pkColumn.comment} ${table.pkColumn.comment}
 ${get}table.pkColumn.isPk?string("true","false")} ${table.pkColumn.isPk?string("true","false")}
 ${get}table.pkColumn.isNullAble?c} ${table.pkColumn.isNullAble?c}
 
@@ -23,5 +24,12 @@ ${get}col.comment} ${col.comment}
 ${get}col.dataType} ${col.dataType}
 ${get}col.isNullAble?c} ${col.isNullAble?c}
 ${get}col.isPk?c} ${col.isPk?c}
-------
+<#if col_has_next>------</#if>
 </#list>
+
+
+===========  Coding信息  ==========
+${coding.mapperPackageName}
+${coding.servicePackageName}
+${coding.controllerPackageName}
+${coding.entityPackageName}

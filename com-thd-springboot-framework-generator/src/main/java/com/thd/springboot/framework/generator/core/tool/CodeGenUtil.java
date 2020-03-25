@@ -8,6 +8,8 @@ import com.thd.springboot.framework.generator.core.tableutil.TableUtil;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,11 +27,13 @@ public class CodeGenUtil implements CodeGen {
 	private TemplateData templateData;
     @Autowired
     private TableUtil tableUtil;
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     /**
      * 生成代码
      */
-    public void generator(String tableName) throws Exception{
+    public Table generator(String tableName) throws Exception{
         Table table = this.tableUtil.loadTable(tableName);
+        return table;
     };
 
     public void createCode(String tableName,String templatePath,String targetPath) throws Exception{
@@ -38,8 +42,13 @@ public class CodeGenUtil implements CodeGen {
         File templateFile = new File(templateData.getTemplateFolderPath() + templatePath);
 
         File templateFolder = templateFile.getParentFile();
+		logger.info("模板:" + templateFile.getAbsolutePath());
+
+
 
         File targetFile = new File(templateData.getTargetFolderPath() + targetPath);
+
+		logger.info("生成文件位置:" + targetFile.getAbsolutePath());
 		File targetFolder = targetFile.getParentFile();
 		if(!targetFolder.exists()){
 			targetFolder.mkdirs();

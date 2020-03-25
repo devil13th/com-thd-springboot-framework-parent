@@ -14,6 +14,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.stream.Stream;
 
 /**
@@ -34,18 +36,30 @@ public class GeneratorApplication {
 //        System.out.println(j);
 
 
-
-
-
-        CodeGen tu = ctx.getBean(CodeGenUtil.class);
+        CodeGen cg = ctx.getBean(CodeGenUtil.class);
 //        System.out.println(tu);
 
-        tu.generator("sys_user");
-        //tu.createCode("sys_user","example.ftl","a.txt");
-//        tu.createCode("sys_user","mapper.ftl","b.txt");
-//        tu.createCode("sys_user","entity.ftl","d.txt");
-        tu.createCode("sys_user","dao.ftl","e.txt");
-//        tu.createCode("sys_user","serviceImpl.ftl","f.txt");
-       // tu.createCode("sys_user","dao.ftl","g.txt");
+//        tu.generator("sys_user");
+
+
+
+
+//        cg.createCode("cg_example","example.ftl","example.txt");
+//        cg.createCode("cg_example","mapper.ftl","CgExampleMapper.xml");
+//        cg.createCode("cg_example","entity.ftl","CgExampleEntity.java");
+//        cg.createCode("cg_example","dao.ftl","CgExampleMapper.java");
+//        cg.createCode("cg_example","serviceImpl.ftl","CgExampleServiceImpl.java");
+//        cg.createCode("cg_example","service.ftl","CgExampleService.java");
+
+
+        String DateStr = "2010-12-31 23:59";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date DateObj = dateFormat.parse(DateStr);
+
+        System.out.println(DateObj);
+
+
+
+
     }
 }

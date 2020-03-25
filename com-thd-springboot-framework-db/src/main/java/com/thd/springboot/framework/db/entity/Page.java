@@ -1,6 +1,7 @@
-package com.thd.springboot.framework.model;
+package com.thd.springboot.framework.db.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thd.springboot.framework.utils.PropertyUtils;
 import io.swagger.annotations.ApiModelProperty;
@@ -18,19 +19,24 @@ import java.io.Serializable;
 @Data
 public class Page implements Serializable {
     @ApiModelProperty("页码，从1开始")
+    @TableField(exist = false)
     private Integer pageNum;
     @ApiModelProperty("每页大小")
     @JSONField(serialize = false)
+    @TableField(exist = false)
     private Integer pageSize;
     @ApiModelProperty("排序字段")
     @JSONField(serialize = false)
+    @TableField(exist = false)
     private String sortField;
     @ApiModelProperty("排序方式")
     @JSONField(serialize = false)
+    @TableField(exist = false)
     private String sortOrder;
     @ApiModelProperty("数据权限sql")
     @JSONField(serialize = false)
     @JsonIgnore
+    @TableField(exist = false)
     private String dataSql;
 
     public String getOrderBy() {

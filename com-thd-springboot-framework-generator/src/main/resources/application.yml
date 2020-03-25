@@ -15,10 +15,10 @@ templateFolderPath: D:\devil13th\github\com-thd-springboot-framework-parent\com-
 targetFolderPath: D:\deleteme\cg\
 # 包配置
 coding:
-  servicePackageName: com.thd.devil13th.example.service.${table.nameCamel}
-  mapperPackageName: mapperPackageName
+  servicePackageName: com.thd.springboot.framework.example.service
+  mapperPackageName: com.thd.springboot.framework.example.mapper
   controllerPackageName: controllerPackageName
-  entityPackageName: com.thd.devil13th.example.entity
+  entityPackageName: com.thd.springboot.framework.example.entity
 logging:
   config: classpath:logback-spring.xml
   path: D:/deleteme/logbacks

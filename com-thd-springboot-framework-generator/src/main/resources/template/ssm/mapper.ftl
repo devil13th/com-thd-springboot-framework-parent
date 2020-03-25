@@ -3,9 +3,9 @@
 <!DOCTYPE mapper
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lenovo.dqm.jqemanagement.dao.mapper.JqeRegistAuditInfoMapper">
+<mapper namespace="${coding.mapperPackageName}.${table.nameBigCamel}Mapper">
 	<!-- Result Map -->
-	<resultMap id="ResultMap" type="${coding.entityPackageName}.${table.nameBigCamel}">
+	<resultMap id="ResultMap" type="${coding.entityPackageName}.${table.nameBigCamel}Entity">
 		<result column="${table.pkColumn.name}" property="${table.pkColumn.nameCamel}" />
 		<#list table.normalColumns as col>
 		<result column="${col.name}" property="${col.nameCamel}" />
@@ -67,7 +67,7 @@
     </sql>
 
     <!-- 插入记录 -->
-    <insert id="add" parameterType="${table.nameBigCamel}">
+    <insert id="add" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
         insert into ${table.name}(
             `${table.pkColumn.name}`,
         <#list table.normalColumns as col>
@@ -84,7 +84,7 @@
 
 
 	<!-- 根据id，修改记录 -->
-	<update id="update" parameterType="${table.nameBigCamel}">
+	<update id="update" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
 		update ${table.name} set
 	    <trim  suffixOverrides="," >
 	        <if test="${table.pkColumn.nameCamel} != null ">
@@ -100,7 +100,7 @@
 	</update>
 
 	<!-- 查询列表 -->
-    <select id="queryEq" resultMap="ResultMap" parameterType="${table.nameBigCamel}">
+    <select id="queryEq" resultMap="ResultMap" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
         select
         <include refid="column_list" />
         from ${table.name}
@@ -111,7 +111,7 @@
     </select>
 
     <!-- 查询列表 -->
-    <select id="queryLike" resultMap="ResultMap" parameterType="${table.nameBigCamel}">
+    <select id="queryLike" resultMap="ResultMap" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
         select
         <include refid="column_list" />
         from ${table.name}
@@ -123,17 +123,17 @@
 
 
 	<!-- 删除记录 -->
-	<delete id="delete" parameterType="${table.nameBigCamel}">
+	<delete id="delete" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
 		delete from  ${table.name} where `${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
 	</delete>
 
 	<!-- 逻辑删除记录 -->
-	<update id="isDelete" parameterType="${table.nameBigCamel}">
+	<update id="isDelete" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
 		update  ${table.name} set is_deleted = 1 where `${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
 	</update>
 
 	<!-- 根据id查询 -->
-	<select id="queryById" resultMap="ResultMap" parameterType="${table.nameBigCamel}">
+	<select id="queryById" resultMap="ResultMap" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
 		select <include refid="column_list" /> from ${table.name} where `${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
 	</select>
 

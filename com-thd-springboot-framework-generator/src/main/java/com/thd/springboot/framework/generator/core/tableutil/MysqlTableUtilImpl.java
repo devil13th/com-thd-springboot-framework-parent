@@ -102,7 +102,12 @@ public class MysqlTableUtilImpl extends TableUtilImpl {
 
 			Column column = Column.createColumn(columnName);
 			column.setComment(comment);
-			column.setDataType(dataType);
+			column.setDbDataType(dataType);
+			String javaDataType = this.dataTypeMap.get(dataType);
+			if(javaDataType == null){
+				throw new RuntimeException(String.format(" 数据库字段与Java字段未设置:[%s].[%s]字段类型[%s]",dbTableName,columnName,dataType));
+			}
+			column.setDataType(this.dataTypeMap.get(dataType));
 			// 是否主键
 			column.setIsPk(keyInfo != null && keyInfo.length() > 0 && "PRI".equalsIgnoreCase(keyInfo));
 			// 是否可以为空

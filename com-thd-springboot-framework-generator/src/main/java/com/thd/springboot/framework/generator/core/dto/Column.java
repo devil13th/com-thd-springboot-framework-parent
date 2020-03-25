@@ -19,14 +19,14 @@ public class Column extends GetterSetterBean{
     private Boolean isPk = false;
     // 是否可以为空
     private Boolean isNullAble = true;
-    // 数据类型
+    // java数据类型
     private String dataType;
+    // db数据类型
+    private String dbDataType;
 
     public Column(String name) {
         super(name);
     }
-
-
 
     public static Column createColumn(String name){
         Column column = new Column(name);

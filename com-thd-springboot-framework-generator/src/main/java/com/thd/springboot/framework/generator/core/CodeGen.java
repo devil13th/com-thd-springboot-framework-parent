@@ -1,5 +1,8 @@
 package com.thd.springboot.framework.generator.core;
 
+import com.thd.springboot.framework.generator.core.dto.Table;
+import javafx.scene.control.Tab;
+
 /**
  * com.thd.springboot.framework.generator.core.CodeGen
  *
@@ -8,11 +11,11 @@ package com.thd.springboot.framework.generator.core;
  **/
 public interface CodeGen {
     /**
-     * 代码生成
+     * 生成表数据
      * @param tableName 表名
      * @throws Exception
      */
-    public void generator(String tableName) throws Exception;
+    public Table generator(String tableName) throws Exception;
 
     /**
      * 根据template生成文件

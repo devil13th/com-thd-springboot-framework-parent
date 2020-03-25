@@ -1,4 +1,4 @@
-package com.thd.springboot.framework.db.mapper;
+package com.thd.springboot.framework.db.service;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.thd.springboot.framework.db.entity.BasicEntity;
@@ -6,12 +6,12 @@ import com.thd.springboot.framework.db.entity.BasicEntity;
 import java.util.List;
 
 /**
- * com.thd.springboot.framework.db.mapper.BasicMapper
+ * com.thd.springboot.framework.db.service.BasicService
  *
  * @author: wanglei62
- * @DATE: 2020/3/24 19:16
+ * @DATE: 2020/3/25 8:47
  **/
-public interface BasicMapper<T extends BasicEntity> extends BaseMapper<T> {
+public interface BasicService<T extends BasicEntity>  {
     /**
      * 保存实体
      *

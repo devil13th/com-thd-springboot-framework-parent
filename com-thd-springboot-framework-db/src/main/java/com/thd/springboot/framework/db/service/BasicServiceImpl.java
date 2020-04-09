@@ -1,7 +1,10 @@
 package com.thd.springboot.framework.db.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.github.pagehelper.PageInfo;
 import com.thd.springboot.framework.db.entity.BasicEntity;
 import com.thd.springboot.framework.db.mapper.BasicMapper;
+import com.thd.springboot.framework.db.utils.PageUtils;
 
 import java.util.List;
 
@@ -48,5 +51,24 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
     @Override
     public List<T> queryLike(T entity) {
         return basicMapper().queryLike(entity);
+    }
+
+    @Override
+    public PageInfo<T> queryEqByPage(T entity) {
+        PageUtils.setPageHelper(entity);
+        PageInfo<T> pager = new PageInfo<T>(basicMapper().queryEq(entity));
+        return pager;
+    }
+
+    @Override
+    public PageInfo<T> queryLikeByPage(T entity) {
+        PageUtils.setPageHelper(entity);
+        PageInfo<T> pager = new PageInfo<T>(basicMapper().queryLike(entity));
+        return pager;
+    }
+
+    @Override
+    public List<T> queryByWrapper(QueryWrapper<T> wrapper) {
+        return basicMapper()
     }
 }

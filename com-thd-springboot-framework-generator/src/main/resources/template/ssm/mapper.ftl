@@ -20,7 +20,6 @@
         </#list>
 	</sql>
 
-	<!-- 查询条件 -->
 	<sql id="where_eq">
 		where is_deleted = 0
     <if test="${table.pkColumn.name} != null ">
@@ -28,22 +27,21 @@
     </if>
     <#list table.normalColumns as col>
         <#if col.dataType=="java.lang.String">
-        <if test="${col.name} != null and ${col.name} != '' ">
+        <if test="${col.nameCamel} != null and ${col.nameCamel} != '' ">
             and ${table.name}.`${col.name}` = ${get}${col.nameCamel}}
         </if>
         <#elseif col.dataType=="java.util.Date">
-        <if test="${col.name} != null ">
+        <if test="${col.nameCamel} != null ">
             and ${table.name}.`${col.name}` = ${get}${col.nameCamel}}
         </if>
         <#else>
-        <if test="${col.name} != null ">
+        <if test="${col.nameCamel} != null ">
             and ${table.name}.`${col.name}` = ${get}${col.nameCamel}}
         </if>
         </#if>
     </#list>
 	</sql>
 
-	<!-- 查询条件 -->
     <sql id="where_like">
         where is_deleted = 0
     <if test="${table.pkColumn.name} != null ">
@@ -51,22 +49,21 @@
     </if>
     <#list table.normalColumns as col>
         <#if col.dataType=="java.lang.String">
-        <if test="${col.name} != null and ${col.name} != '' ">
+        <if test="${col.nameCamel} != null and ${col.nameCamel} != '' ">
             and ${table.name}.`${col.name}` like CONCAT('%',${get}${col.nameCamel}},'%')
         </if>
         <#elseif col.dataType=="java.util.Date">
-        <if test="${col.name} != null ">
+        <if test="${col.nameCamel} != null ">
             and ${table.name}.`${col.name}` = ${get}${col.nameCamel}}
         </if>
         <#else>
-        <if test="${col.name} != null ">
+        <if test="${col.nameCamel} != null ">
             and ${table.name}.`${col.name}` = ${get}${col.nameCamel}}
         </if>
         </#if>
     </#list>
     </sql>
 
-    <!-- 插入记录 -->
     <insert id="add" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
         insert into ${table.name}(
             `${table.pkColumn.name}`,
@@ -83,7 +80,6 @@
     </insert>
 
 
-	<!-- 根据id，修改记录 -->
 	<update id="update" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
 		update ${table.name} set
 	    <trim  suffixOverrides="," >
@@ -99,7 +95,6 @@
 	    where `${table.pkColumn.name}`=${get}${table.pkColumn.nameCamel}}
 	</update>
 
-	<!-- 查询列表 -->
     <select id="queryEq" resultMap="ResultMap" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
         select
         <include refid="column_list" />
@@ -110,7 +105,6 @@
         </if>
     </select>
 
-    <!-- 查询列表 -->
     <select id="queryLike" resultMap="ResultMap" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
         select
         <include refid="column_list" />
@@ -122,17 +116,14 @@
     </select>
 
 
-	<!-- 删除记录 -->
 	<delete id="delete" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
 		delete from  ${table.name} where `${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
 	</delete>
 
-	<!-- 逻辑删除记录 -->
 	<update id="isDelete" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
 		update  ${table.name} set is_deleted = 1 where `${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
 	</update>
 
-	<!-- 根据id查询 -->
 	<select id="queryById" resultMap="ResultMap" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
 		select <include refid="column_list" /> from ${table.name} where `${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
 	</select>

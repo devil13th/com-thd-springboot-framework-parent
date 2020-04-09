@@ -1,6 +1,8 @@
 package com.thd.springboot.framework.db.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.github.pagehelper.PageInfo;
 import com.thd.springboot.framework.db.entity.BasicEntity;
 
 import java.util.List;
@@ -67,4 +69,22 @@ public interface BasicService<T extends BasicEntity>  {
      * @return
      */
     List<T> queryLike(T entity);
+
+    /**
+     * 返回实体List,根据条件
+     *
+     * @param entity 实体
+     * @return
+     */
+    PageInfo<T> queryEqByPage(T entity);
+
+    /**
+     * 返回实体List,根据条件,模糊匹配
+     *
+     * @param entity 实体
+     * @return
+     */
+    PageInfo<T> queryLikeByPage(T entity);
+
+    List<T> queryByWrapper(QueryWrapper<T> wrapper);
 }

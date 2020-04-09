@@ -87,8 +87,7 @@ public class CodeGenUtil implements CodeGen {
 
 		templateData.setTable(tableUtil.loadTable(tableName));
 		try {
-
-			System.err.println(JSONObject.toJSONString(templateData));
+			this.logger.info(JSONObject.toJSONString(templateData));
 			t.process(templateData, out);
 		} catch (TemplateException e) {
 			e.printStackTrace();

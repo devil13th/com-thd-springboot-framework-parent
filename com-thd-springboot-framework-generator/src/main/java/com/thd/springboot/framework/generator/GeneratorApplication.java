@@ -44,19 +44,13 @@ public class GeneratorApplication {
 
 
 
-//        cg.createCode("cg_example","example.ftl","example.txt");
-//        cg.createCode("cg_example","mapper.ftl","CgExampleMapper.xml");
-//        cg.createCode("cg_example","entity.ftl","CgExampleEntity.java");
-//        cg.createCode("cg_example","dao.ftl","CgExampleMapper.java");
-//        cg.createCode("cg_example","serviceImpl.ftl","CgExampleServiceImpl.java");
-//        cg.createCode("cg_example","service.ftl","CgExampleService.java");
+        cg.createCode("cg_example","example.ftl","example.txt");
+        cg.createCode("cg_example","mapper.ftl","CgExampleMapper.xml");
+        cg.createCode("cg_example","entity.ftl","CgExampleEntity.java");
+        cg.createCode("cg_example","dao.ftl","CgExampleMapper.java");
+        cg.createCode("cg_example","serviceImpl.ftl","CgExampleServiceImpl.java");
+        cg.createCode("cg_example","service.ftl","CgExampleService.java");
 
-
-        String DateStr = "2010-12-31 23:59";
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Date DateObj = dateFormat.parse(DateStr);
-
-        System.out.println(DateObj);
 
 
 

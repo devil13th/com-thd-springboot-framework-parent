@@ -9,6 +9,8 @@ import ${coding.servicePackageName}.${table.nameBigCamel}Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import java.util.List;
 
 @Service
@@ -22,18 +24,34 @@ public class ${table.nameBigCamel}ServiceImpl extends BasicServiceImpl<${table.n
         return ${table.nameCamel}Mapper;
     }
 
-    public List queryAll(){
+    public List queryAll${table.nameBigCamel}(){
         return ${table.nameCamel}Mapper.selectList(null);
     };
 
-    public ${table.nameBigCamel}Entity query${table.nameBigCamel}(${table.pkColumn.dataType} ${table.pkColumn.nameCamel}){
+    public ${table.nameBigCamel}Entity query${table.nameBigCamel}ById(${table.pkColumn.dataType} ${table.pkColumn.nameCamel}){
         QueryWrapper<${table.nameBigCamel}Entity> qw = new QueryWrapper<${table.nameBigCamel}Entity>();
-        qw.eq("user_id",id);
+        qw.eq("${table.pkColumn.name}",${table.pkColumn.nameCamel});
         return ${table.nameCamel}Mapper.selectOne(qw);
     };
 
+
+    public List<${table.nameBigCamel}Entity> query${table.nameBigCamel}Eq(${table.nameBigCamel}Entity entity){
+        return ${table.nameCamel}Mapper.queryEq(entity);
+    }
+
+    public List<${table.nameBigCamel}Entity> query${table.nameBigCamel}Like(${table.nameBigCamel}Entity entity){
+        return ${table.nameCamel}Mapper.queryLike(entity);
+    }
+
+
+
     public List<${table.nameBigCamel}Entity> query${table.nameBigCamel}(QueryWrapper<${table.nameBigCamel}Entity> wrapper){
         return ${table.nameCamel}Mapper.selectList(wrapper);
+    }
+
+
+    public IPage<${table.nameBigCamel}Entity> query${table.nameBigCamel}ByPage(QueryWrapper<${table.nameBigCamel}Entity> wrapper, Page page){
+        return ${table.nameCamel}Mapper.selectPage(page,wrapper);
     }
 
 

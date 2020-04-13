@@ -6,6 +6,7 @@ import com.thd.springboot.framework.db.entity.BasicEntity;
 import com.thd.springboot.framework.db.mapper.BasicMapper;
 import com.thd.springboot.framework.db.utils.PageUtils;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,7 +21,28 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
 
     @Override
     public Integer add(T entity) {
+        if(entity.getCreateTime() == null){
+            entity.setCreateTime(new Date());
+        }
+        if(entity.getModifyTime() == null){
+            entity.setModifyTime(new Date());
+        }
+        entity.setIsDeleted(0);
         return basicMapper().add(entity);
+    }
+
+    @Override
+    public void insertBatch(List<T> entityList) {
+        entityList.stream().forEach(entity -> {
+            if(entity.getCreateTime() == null){
+                entity.setCreateTime(new Date());
+            }
+            if(entity.getModifyTime() == null){
+                entity.setModifyTime(new Date());
+            }
+            entity.setIsDeleted(0);
+        });
+        basicMapper().insertBatch(entityList);
     }
 
     @Override
@@ -30,11 +52,14 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
 
     @Override
     public Integer logicDelete(Object id) {
-        return basicMapper().logicDelete(id);
+        return this.basicMapper().logicDelete(id);
     }
 
     @Override
     public Integer update(T entity) {
+        if(entity.getModifyTime() == null){
+            entity.setModifyTime(new Date());
+        }
         return basicMapper().update(entity);
     }
 
@@ -68,7 +93,10 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
     }
 
     @Override
-    public List<T> queryByWrapper(QueryWrapper<T> wrapper) {
-        return basicMapper()
+    public List<T> queryByWrapper(QueryWrapper<T> queryWrapper) {
+        queryWrapper.eq("is_deleted","0");
+        return basicMapper().selectList(queryWrapper);
     }
+
+
 }

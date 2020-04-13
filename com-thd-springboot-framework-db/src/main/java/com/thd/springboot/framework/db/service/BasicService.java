@@ -55,7 +55,7 @@ public interface BasicService<T extends BasicEntity>  {
     T queryById(Object id);
 
     /**
-     * 返回实体List,根据条件
+     * 返回实体List,根据条件,精确匹配
      *
      * @param entity 实体
      * @return
@@ -71,7 +71,7 @@ public interface BasicService<T extends BasicEntity>  {
     List<T> queryLike(T entity);
 
     /**
-     * 返回实体List,根据条件
+     * 返回实体List,精确匹配且分页
      *
      * @param entity 实体
      * @return
@@ -79,12 +79,14 @@ public interface BasicService<T extends BasicEntity>  {
     PageInfo<T> queryEqByPage(T entity);
 
     /**
-     * 返回实体List,根据条件,模糊匹配
+     * 返回实体List,根据条件,模糊匹配且分页
      *
      * @param entity 实体
      * @return
      */
     PageInfo<T> queryLikeByPage(T entity);
 
-    List<T> queryByWrapper(QueryWrapper<T> wrapper);
+    List<T> queryByWrapper(QueryWrapper<T> queryWrapper);
+
+    void insertBatch(List<T> entityList);
 }

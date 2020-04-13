@@ -14,18 +14,23 @@
 
 
 	<sql id="column_list">
-	    ${table.name}.`${table.pkColumn.name}`, <!-- 0 ${table.pkColumn.comment} -->
-	    <#list table.normalColumns as col>
+	    <#list table.allColumns as col>
 	    ${table.name}.`${col.name}`<#if col_has_next>,</#if> <!-- ${col_index} ${col.comment} -->
         </#list>
 	</sql>
 
 	<sql id="where_eq">
 		where is_deleted = 0
-    <if test="${table.pkColumn.name} != null ">
-        and ${table.name}.`${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
-    </if>
+        <if test="${table.pkColumn.name} != null ">
+            and ${table.name}.`${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
+        </if>
     <#list table.normalColumns as col>
+        <#if col.name!="is_deleted" &&
+            col.name!="create_by" &&
+            col.name!="modify_by" &&
+            col.name!="create_time" &&
+            col.name!="modify_time"
+        >
         <#if col.dataType=="java.lang.String">
         <if test="${col.nameCamel} != null and ${col.nameCamel} != '' ">
             and ${table.name}.`${col.name}` = ${get}${col.nameCamel}}
@@ -39,15 +44,22 @@
             and ${table.name}.`${col.name}` = ${get}${col.nameCamel}}
         </if>
         </#if>
+        </#if>
     </#list>
 	</sql>
 
     <sql id="where_like">
         where is_deleted = 0
-    <if test="${table.pkColumn.name} != null ">
-        and ${table.name}.`${table.pkColumn.name}` like ${get}${table.pkColumn.nameCamel}}
-    </if>
+        <if test="${table.pkColumn.name} != null ">
+            and ${table.name}.`${table.pkColumn.name}` like ${get}${table.pkColumn.nameCamel}}
+        </if>
     <#list table.normalColumns as col>
+        <#if col.name!="is_deleted" &&
+            col.name!="create_by" &&
+            col.name!="modify_by" &&
+            col.name!="create_time" &&
+            col.name!="modify_time"
+        >
         <#if col.dataType=="java.lang.String">
         <if test="${col.nameCamel} != null and ${col.nameCamel} != '' ">
             and ${table.name}.`${col.name}` like CONCAT('%',${get}${col.nameCamel}},'%')
@@ -61,6 +73,7 @@
             and ${table.name}.`${col.name}` = ${get}${col.nameCamel}}
         </if>
         </#if>
+        </#if>
     </#list>
     </sql>
 
@@ -72,12 +85,20 @@
         </#list>
         )
         values(
-            `${get}${table.pkColumn.nameCamel}}`,
+            ${get}${table.pkColumn.nameCamel}},
         <#list table.normalColumns as col>
-            `${get}${col.nameCamel}}`<#if col_has_next>,</#if>
+            ${get}${col.nameCamel}}<#if col_has_next>,</#if>
         </#list>
         )
     </insert>
+
+    <delete id="physicsDelete" parameterType="${table.pkColumn.dataType}">
+        delete from ${table.name} where `${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
+    </delete>
+
+    <update id="logicDelete" parameterType="${table.pkColumn.dataType}">
+        update ${table.name} set is_deleted=1 where `${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
+    </update>
 
 
 	<update id="update" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
@@ -101,7 +122,7 @@
         from ${table.name}
         <include refid="where_eq" />
         <if test="orderBy != null and orderBy != ''">
-         order by
+         order by ${get}orderBy}
         </if>
     </select>
 
@@ -111,7 +132,7 @@
         from ${table.name}
         <include refid="where_like" />
         <if test="orderBy != null and orderBy != ''">
-         order by
+         order by  ${get}orderBy}
         </if>
     </select>
 
@@ -125,8 +146,33 @@
 	</update>
 
 	<select id="queryById" resultMap="ResultMap" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
-		select <include refid="column_list" /> from ${table.name} where `${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
+		select <include refid="column_list" /> from ${table.name} where is_deleted=0 and `${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
 	</select>
 
+
+	<select id="queryAllToMapKey" resultType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
+        select
+        <include refid="column_list" />
+        from
+        ${table.name}
+        <include refid="where_eq" />
+    </select>
+
+    <insert id="insertBatch" >
+            insert into ${table.name}
+            (
+                <#list table.allColumns as col>
+               ${col.name}<#if col_has_next>,</#if>
+                </#list>
+            )
+            values
+            <foreach collection="list" item="r" index="index" separator=",">
+                (
+                    <#list table.allColumns as col>
+                    ${get}r.${col.nameCamel}}<#if col_has_next>,</#if>
+                    </#list>
+                )
+            </foreach>
+        </insert>
 
 </mapper>

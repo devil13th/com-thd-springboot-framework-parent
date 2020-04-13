@@ -44,6 +44,13 @@ public class MyPage implements Serializable {
     @TableField(exist = false)
     private String dataSql;
 
+    @TableField(exist = false)
+    private String orderBy;
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
+
     public String getOrderBy() {
         String orderBy = null;
         if (StringUtils.isNotBlank(this.sortField)) {

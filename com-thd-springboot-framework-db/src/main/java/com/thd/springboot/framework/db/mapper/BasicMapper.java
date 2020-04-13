@@ -2,6 +2,7 @@ package com.thd.springboot.framework.db.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.thd.springboot.framework.db.entity.BasicEntity;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,12 +22,18 @@ public interface BasicMapper<T extends BasicEntity> extends BaseMapper<T> {
     Integer add(T entity);
 
     /**
+     * 批量插入
+     * @param entityList 实体列表
+     */
+    void insertBatch(List<T> entityList);
+
+    /**
      * 删除实体,根据主键
      *
      * @param id
      * @return
      */
-    Integer physicsDelete(Object id);
+    Integer physicsDelete(@Param("id")Object id);
 
     /**
      * 逻辑删除,根据主键
@@ -67,4 +74,6 @@ public interface BasicMapper<T extends BasicEntity> extends BaseMapper<T> {
      * @return
      */
     List<T> queryLike(T entity);
+
+
 }

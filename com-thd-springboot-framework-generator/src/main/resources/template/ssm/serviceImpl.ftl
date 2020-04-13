@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -55,7 +56,8 @@ public class ${table.nameBigCamel}ServiceImpl extends BasicServiceImpl<${table.n
     }
 
 
-
-
+    public Map<${table.pkColumn.dataType},${table.nameBigCamel}Entity> queryAllToMapKey(){
+        return ${table.nameCamel}Mapper.queryAllToMapKey();
+    }
 
 }

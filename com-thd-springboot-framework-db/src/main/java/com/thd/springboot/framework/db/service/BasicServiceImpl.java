@@ -28,7 +28,10 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
             entity.setModifyTime(new Date());
         }
         entity.setIsDeleted(0);
-        return basicMapper().add(entity);
+        int result =  basicMapper().add(entity);
+        if(result != 1){
+            throw new RuntimeException(" add failed ");
+        }
     }
 
     @Override
@@ -52,7 +55,9 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
 
     @Override
     public Integer logicDelete(Object id) {
-        return this.basicMapper().logicDelete(id);
+        T entity = this.queryById(id);
+        entity.setIsDeleted(1);
+        return this.basicMapper().update(entity);
     }
 
     @Override

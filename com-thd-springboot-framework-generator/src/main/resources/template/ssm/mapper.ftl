@@ -121,9 +121,11 @@
         <include refid="column_list" />
         from ${table.name}
         <include refid="where_eq" />
+         <!--
         <if test="orderBy != null and orderBy != ''">
          order by ${get}orderBy}
         </if>
+        -->
     </select>
 
     <select id="queryLike" resultMap="ResultMap" parameterType="${coding.entityPackageName}.${table.nameBigCamel}Entity">
@@ -131,9 +133,11 @@
         <include refid="column_list" />
         from ${table.name}
         <include refid="where_like" />
+        <!--
         <if test="orderBy != null and orderBy != ''">
          order by  ${get}orderBy}
         </if>
+        -->
     </select>
 
 

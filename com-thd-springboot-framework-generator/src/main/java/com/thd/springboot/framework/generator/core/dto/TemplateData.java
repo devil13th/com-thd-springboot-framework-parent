@@ -3,7 +3,10 @@ package com.thd.springboot.framework.generator.core.dto;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
  * com.thd.springboot.framework.generator.core.dto.TemplateData
@@ -25,5 +28,8 @@ public class TemplateData {
     private String targetFolderPath;
     @Autowired
     private Coding coding;
+    @Autowired
+    private CustomData customData;
+
 
 }

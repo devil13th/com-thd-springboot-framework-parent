@@ -26,59 +26,47 @@ public class ${table.nameBigCamel}Controller extends BasicController {
     private ${table.nameBigCamel}Service ${table.nameCamel}ServiceImpl;
 
 
-
-
     @ResponseBody
     @RequestMapping("/test")
     // url : http://127.0.0.1:8899/thd/cg/test
     public Message test(){
-        System.out.println("123412341234");
+        System.out.println("test");
         List<${table.nameBigCamel}Entity> l = this.${table.nameCamel}ServiceImpl.queryAll${table.nameBigCamel}();
         return Message.success(l);
     }
 
     @ResponseBody
-    @PostMapping("/add")
-    // url : http://127.0.0.1:8899/thd/cg/add
-    public Message add(@RequestBody ${table.nameBigCamel}Entity entity){
+    @PostMapping("/add${table.nameBigCamel}")
+    // url : http://127.0.0.1:8899/thd/cg/add${table.nameBigCamel}
+    public Message add${table.nameBigCamel}(@RequestBody ${table.nameBigCamel}Entity entity){
         this.${table.nameCamel}ServiceImpl.add(entity);
         return Message.success("SUCCESS");
     }
     @ResponseBody
-    @PostMapping("/update")
-    // url : http://127.0.0.1:8899/thd/cg/update
-    public Message update(@RequestBody ${table.nameBigCamel}Entity entity){
+    @PostMapping("/update${table.nameBigCamel}")
+    // url : http://127.0.0.1:8899/thd/cg/update${table.nameBigCamel}
+    public Message update${table.nameBigCamel}(@RequestBody ${table.nameBigCamel}Entity entity){
         this.${table.nameCamel}ServiceImpl.update(entity);
         return Message.success("SUCCESS");
     }
     @ResponseBody
-    @DeleteMapping("/physicsDelete/{id}")
-    // url : http://127.0.0.1:8899/thd/cg/physicsDelete/15
-    public Message physicsDelete(@PathVariable String id){
+    @DeleteMapping("/physicsDelete${table.nameBigCamel}/{id}")
+    // url : http://127.0.0.1:8899/thd/cg/physicsDelete${table.nameBigCamel}/15
+    public Message physicsDelete${table.nameBigCamel}(@PathVariable String id){
         this.${table.nameCamel}ServiceImpl.physicsDelete(id);
         return Message.success("SUCCESS");
     }
 
 
     @ResponseBody
-    @DeleteMapping("/logicDelete/{id}")
-    // url : http://127.0.0.1:8899/thd/cg/logicDelete/15
-    public Message logicDelete(@PathVariable String id){
+    @DeleteMapping("/logicDelete${table.nameBigCamel}/{id}")
+    // url : http://127.0.0.1:8899/thd/cg/logicDelete${table.nameBigCamel}/15
+    public Message logicDelete${table.nameBigCamel}(@PathVariable String id){
         this.${table.nameCamel}ServiceImpl.logicDelete(id);
         return Message.success("SUCCESS");
     }
 
 
-
-    @ResponseBody
-    @RequestMapping("/queryByName/{name}")
-    // url : http://127.0.0.1:8899/thd/cg/queryByName/s
-    public Message queryByName(@PathVariable String name){
-        QueryWrapper<${table.nameBigCamel}Entity> q = new QueryWrapper<${table.nameBigCamel}Entity>();
-        q.eq("user_name",name);
-        List<${table.nameBigCamel}Entity> l = this.${table.nameCamel}ServiceImpl.query${table.nameBigCamel}(q);
-        return Message.success(l);
-    }
 
 
     @ResponseBody
@@ -108,7 +96,7 @@ public class ${table.nameBigCamel}Controller extends BasicController {
 
 
     @ResponseBody
-    @RequestMapping("/queryByWrapper")
+    @RequestMapping("/query${table.nameBigCamel}ByWrapper")
     // url : http://127.0.0.1:8899/thd/cg/queryLikeByPage
     public Message queryByWrapper(@RequestBody ${table.nameBigCamel}Entity entity){
         QueryWrapper<${table.nameBigCamel}Entity> query = new QueryWrapper<>();
@@ -118,9 +106,9 @@ public class ${table.nameBigCamel}Controller extends BasicController {
     }
 
     @ResponseBody
-    @RequestMapping("/queryAllToMapKey")
-    // url : http://127.0.0.1:8899/thd/cg/queryAllToMapKey
-    public Message queryAllToMapKey(){
+    @RequestMapping("/queryAll${table.nameBigCamel}ToMapKey")
+    // url : http://127.0.0.1:8899/thd/cg/queryAll${table.nameBigCamel}ToMapKey
+    public Message queryAll${table.nameBigCamel}ToMapKey(){
         QueryWrapper<${table.nameBigCamel}Entity> query = new QueryWrapper<>();
         query.eq("user_name","c");
         Map<String,${table.nameBigCamel}Entity> list = this.${table.nameCamel}ServiceImpl.queryAllToMapKey();
@@ -131,9 +119,9 @@ public class ${table.nameBigCamel}Controller extends BasicController {
 
 
     @ResponseBody
-    @RequestMapping("/insertBatch")
-    // url : http://127.0.0.1:8899/thd/cg/insertBatch
-    public Message insertBatch(){
+    @RequestMapping("/insert${table.nameBigCamel}Batch")
+    // url : http://127.0.0.1:8899/thd/cg/insert${table.nameBigCamel}Batch
+    public Message insert${table.nameBigCamel}Batch(){
 
         List<${table.nameBigCamel}Entity> l = new ArrayList<${table.nameBigCamel}Entity>();
         for(int i = 0 , j = 10 ; i < j ; i++){

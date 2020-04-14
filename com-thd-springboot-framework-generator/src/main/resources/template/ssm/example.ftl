@@ -33,3 +33,8 @@ ${coding.mapperPackageName}
 ${coding.servicePackageName}
 ${coding.controllerPackageName}
 ${coding.entityPackageName}
+
+
+===========  自定义信息  ==========
+name : ${customData.map.name}
+version : ${customData.map.version}

@@ -1,5 +1,6 @@
 package ${coding.entityPackageName};
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 

@@ -32,6 +32,7 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
         if(result != 1){
             throw new RuntimeException(" add failed ");
         }
+        return result;
     }
 
     @Override

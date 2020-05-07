@@ -23,6 +23,8 @@
         <pagehelper.version>1.2.3</pagehelper.version>
         <swagger-starter.version>1.7.0.RELEASE</swagger-starter.version>
         <redisson.version>3.11.0</redisson.version>
+        <shiro-spring.version>1.5.3</shiro-spring.version>
+        <shiro-redis.version>3.1.0</shiro-redis.version>
     </properties>
 
 
@@ -94,6 +96,18 @@
                 <version>${redisson.version}</version>
             </dependency>
 
+            <!-- shiro -->
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro-spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.crazycake</groupId>
+                <artifactId>shiro-redis</artifactId>
+                <version>${shiro-redis.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.thd.springboot.framework</groupId>
                 <artifactId>com-thd-springboot-framework-dependencies</artifactId>
@@ -117,6 +131,11 @@
             <dependency>
                 <groupId>com.thd.springboot.framework</groupId>
                 <artifactId>com-thd-springboot-framework-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.thd.springboot.framework</groupId>
+                <artifactId>com-thd-springboot-framework-shiro</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

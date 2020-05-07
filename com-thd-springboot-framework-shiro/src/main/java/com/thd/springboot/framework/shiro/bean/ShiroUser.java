@@ -13,24 +13,25 @@ import java.util.Set;
 public class ShiroUser implements Serializable {
     private String id;
     private String userName;
-    private String password;
     private String phone;
+    private boolean locked;
+    // 凭证  例如密码 或 短信验证码
+    private String credential;
 
     public ShiroUser(){}
 
-    public ShiroUser(String id, String userName, String password, Set<ShiroRole> roles) {
+    public ShiroUser(String id, String userName, Set<ShiroRole> roles) {
         this.id = id;
         this.userName = userName;
-        this.password = password;
         this.roles = roles;
     }
 
-    public ShiroUser(String id, String userName, String password, String phone, Set<ShiroRole> roles) {
+    public ShiroUser(String id, String userName, String credential, String phone, Set<ShiroRole> roles) {
         this.id = id;
         this.userName = userName;
-        this.password = password;
         this.roles = roles;
         this.phone = phone;
+        this.credential = credential;
     }
 
     public String getId() {
@@ -57,20 +58,28 @@ public class ShiroUser implements Serializable {
         this.phone = phone;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Set<ShiroRole> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<ShiroRole> roles) {
         this.roles = roles;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
+    public String getCredential() {
+        return credential;
+    }
+
+    public void setCredential(String credential) {
+        this.credential = credential;
     }
 
     /**

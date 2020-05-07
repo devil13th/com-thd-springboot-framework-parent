@@ -24,6 +24,7 @@ import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -38,6 +39,7 @@ import java.util.*;
  * Description: No Description
  */
 @Configuration
+@ConditionalOnProperty(prefix = "shiro",name = "enable",havingValue = "true")
 public class ShiroConfig {
 //    //不加这个注解不生效，具体不详
 //    @Bean

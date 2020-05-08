@@ -20,9 +20,10 @@ public class ShiroUser implements Serializable {
 
     public ShiroUser(){}
 
-    public ShiroUser(String id, String userName, Set<ShiroRole> roles) {
+    public ShiroUser(String id, String userName,String phone, Set<ShiroRole> roles) {
         this.id = id;
         this.userName = userName;
+        this.phone = phone;
         this.roles = roles;
     }
 

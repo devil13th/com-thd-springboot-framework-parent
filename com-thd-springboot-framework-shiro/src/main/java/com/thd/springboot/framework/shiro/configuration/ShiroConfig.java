@@ -387,6 +387,7 @@ public class ShiroConfig {
         //map.put("/list", "anon");
         map.put("/logout", "anon");
         map.put("/login", "anon");
+        map.put("/getPhoneLoginCode","anon");
         map.put("/doLogin", "anon");
         map.put("/simpleHash","anon");
         map.put("/pLogin","anon");

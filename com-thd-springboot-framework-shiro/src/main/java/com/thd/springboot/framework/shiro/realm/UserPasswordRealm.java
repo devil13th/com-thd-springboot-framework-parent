@@ -105,7 +105,7 @@ public class UserPasswordRealm extends AuthorizingRealm {
         //ShiroUser u = loginService.getUserByName(username);
 
 
-        // 原始密码 - 并非数据库中的密码
+        // 原始密码 - 数据库中的密码
         String pwd = user.getCredential();
         // 盐值是用户名
         ByteSource salt = ByteSource.Util.bytes(username);

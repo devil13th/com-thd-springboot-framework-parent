@@ -54,9 +54,9 @@ public class MyAuthcFilter extends FormAuthenticationFilter {
      * */
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response)throws Exception{
-        if (isLoginRequest(request, response)) {
+        if (isLoginRequest(request, response)) { // 是否是登录的地址
             if (isLoginSubmission(request, response)) {
-                return executeLogin(request, response);
+                return executeLogin(request, response); // 执行登录
             } else {
                 return true;
             }

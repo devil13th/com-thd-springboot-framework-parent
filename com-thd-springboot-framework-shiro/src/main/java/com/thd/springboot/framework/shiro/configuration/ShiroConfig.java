@@ -395,7 +395,7 @@ public class ShiroConfig {
         map.put("/unauthorizedurl","anon");
 
         map.put("/testRedis/*","anon");
-        map.put("/perm/*","anon,authc,prems");
+        map.put("/perm/*","anon,authc,prems[admin,alal]");
         map.put("/dynamicPerm","prems");
         map.put("/**", "authc");
 

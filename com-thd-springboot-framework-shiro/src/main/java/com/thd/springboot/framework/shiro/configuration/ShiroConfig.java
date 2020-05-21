@@ -3,6 +3,7 @@ package com.thd.springboot.framework.shiro.configuration;
 import com.thd.springboot.framework.shiro.filter.MyAnonFilter;
 import com.thd.springboot.framework.shiro.filter.MyAuthcFilter;
 import com.thd.springboot.framework.shiro.filter.MyPermsFilter;
+import com.thd.springboot.framework.shiro.filter.MyValidateCodeFilter;
 import com.thd.springboot.framework.shiro.listener.MyListener;
 import com.thd.springboot.framework.shiro.realm.PhoneMessageRealm;
 import com.thd.springboot.framework.shiro.realm.UserPasswordRealm;
@@ -363,6 +364,8 @@ public class ShiroConfig {
         filters.put("anon", new MyAnonFilter());
         filters.put("authc", new MyAuthcFilter());
         filters.put("prems", new MyPermsFilter());
+        filters.put("validatecode", new MyValidateCodeFilter());
+
         bean.setFilters(filters);
 
 
@@ -394,8 +397,11 @@ public class ShiroConfig {
         map.put("/showInfo","anon");
         map.put("/unauthorizedurl","anon");
 
+        // 自定义的filter - 用于生成验证码 然后放到Session中
+        map.put("/validatecode", "validatecode");
+
         map.put("/testRedis/*","anon");
-        map.put("/perm/*","anon,authc,prems[admin,alal]");
+        map.put("/perm/*","anon,authc[12345],prems[admin,alal]");
         map.put("/dynamicPerm","prems");
         map.put("/**", "authc");
 

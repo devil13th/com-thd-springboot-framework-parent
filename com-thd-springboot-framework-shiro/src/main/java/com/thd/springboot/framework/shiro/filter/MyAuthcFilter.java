@@ -25,8 +25,11 @@ public class MyAuthcFilter extends FormAuthenticationFilter {
     }
     /**
      *
-     * 表示是否允许访问；mappedValue就是[urls]配置中拦截器参数部分，如果允许访问返回true，否则false；
+     * 表示是否允许访问；mappedValue就是[urls]配置中拦截器参数部分，参见ShiroConfig.shiroFilterFactoryBean方法中 “ map.put("/perm/*","anon,authc[12345],prems[admin,alal]"); ”
+     * 如果允许访问返回true，否则false；
      * (感觉这里应该是对白名单（不需要登录的接口）放行的)
+     *
+     * adviceFilter中的boolean preHandle(...)方法其实最后调用的是isAccessAllowed() || onAccessDenied() 所以
      * 如果isAccessAllowed返回true则onAccessDenied方法不会继续执行
      * 这里可以用来判断一些不被通过的链接（个人备注）
      * * 表示是否允许访问 ，如果允许访问返回true，否则false；

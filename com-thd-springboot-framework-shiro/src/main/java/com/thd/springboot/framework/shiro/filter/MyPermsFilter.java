@@ -48,7 +48,9 @@ public class MyPermsFilter extends PermissionsAuthorizationFilter {
             /**
              * 判断是否有权限，调用shiro  hasRole  /  hasPermission
              */
-            return true;
+            return super.onAccessDenied(request,response);
+
+
         } else {
 
             //解决 WebUtils.toHttp 往返回response写数据跨域问题

@@ -20,7 +20,7 @@ public class TemplateData {
     private Table table;
     @Autowired
     private Db db;
-    @Value("MYSQL") // 默认 MYSQL
+    @Value("${dbType}") // 默认 MYSQL
     private String dbType;
     @Value("${templateFolderPath}") // 模板目录位置
     private String templateFolderPath;

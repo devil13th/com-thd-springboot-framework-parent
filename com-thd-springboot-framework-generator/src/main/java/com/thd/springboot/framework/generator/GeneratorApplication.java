@@ -44,18 +44,18 @@ public class GeneratorApplication {
 
 
 
-        cg.createCode("cg_example","example.ftl","example.txt");
-        cg.createCode("cg_example","mapper.ftl","CgExampleMapper.xml");
-        cg.createCode("cg_example","entity.ftl","CgExampleEntity.java");
-        cg.createCode("cg_example","entityParent.ftl","CgExampleEntityParent.java");
-        cg.createCode("cg_example","dao.ftl","CgExampleMapper.java");
-        cg.createCode("cg_example","serviceImpl.ftl","CgExampleServiceImpl.java");
-        cg.createCode("cg_example","service.ftl","CgExampleService.java");
-        cg.createCode("cg_example","controller.ftl","CgExampleController.java");
+//        cg.createCode("cg_example","example.ftl","example.txt");
+//        cg.createCode("cg_example","mapper.ftl","CgExampleMapper.xml");
+//        cg.createCode("cg_example","entity.ftl","CgExampleEntity.java");
+//        cg.createCode("cg_example","entityParent.ftl","CgExampleEntityParent.java");
+//        cg.createCode("cg_example","dao.ftl","CgExampleMapper.java");
+//        cg.createCode("cg_example","serviceImpl.ftl","CgExampleServiceImpl.java");
+//        cg.createCode("cg_example","service.ftl","CgExampleService.java");
+//        cg.createCode("cg_example","controller.ftl","CgExampleController.java");
 
-
-
-
-
+        cg.createCode("t_painting_ort_detail","entityParent.ftl","TPaintingOrtDetailParentEntity.java");
+        cg.createCode("t_painting_ort_detail","controller.ftl","AController.java");
+        cg.createCode("t_painting_ort_detail","mapper.ftl","TPaintingOrtDetailMapper.xml");
+        cg.createCode("t_painting_ort_detail","entity.ftl","TPaintingOrtDetailEntity.java");
     }
 }

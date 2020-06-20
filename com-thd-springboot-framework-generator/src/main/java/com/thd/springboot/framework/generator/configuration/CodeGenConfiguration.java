@@ -4,6 +4,7 @@ import com.thd.springboot.framework.generator.core.dto.Db;
 import com.thd.springboot.framework.generator.core.dto.TemplateData;
 import com.thd.springboot.framework.generator.core.tableutil.MysqlTableUtilImpl;
 import com.thd.springboot.framework.generator.core.tableutil.OracleTableUtilImpl;
+import com.thd.springboot.framework.generator.core.tableutil.PgsqlTableUtilImpl;
 import com.thd.springboot.framework.generator.core.tableutil.TableUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +30,8 @@ public class CodeGenConfiguration {
             return new MysqlTableUtilImpl();
         }else if(templateData.getDbType().equalsIgnoreCase("oracle")){
             return new OracleTableUtilImpl();
+        }else if(templateData.getDbType().equalsIgnoreCase("pgsql")){
+            return new PgsqlTableUtilImpl();
         }else{
             throw new RuntimeException(" illegal dbtype ");
         }

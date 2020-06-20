@@ -2,13 +2,13 @@ spring:
   profiles:
     active: dev
   datasource:
-    url: jdbc:postgresql://10.122.49.55:15432/PROJ_DSCQM?useUnicode=true&characterEncoding=UTF-8
-    username: proj_dscqm
-    password: proj_dscqm
-    driver-class-name: org.postgresql.Driver
-dbType: pgsql
+    # 注意：MySQL连接驱动和版本都是8.0以上需要添加时区：serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
 # 表空间
-schema: dscqm_pcg
+schema: test
 # 模板公共路径
 templateFolderPath: D:\devil13th\github\com-thd-springboot-framework-parent\com-thd-springboot-framework-generator\src\main\resources\template\ssm\
 #  生成文件公共路径

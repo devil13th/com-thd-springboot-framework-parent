@@ -46,13 +46,7 @@ public class CodeGenUtil implements CodeGen {
 
 
 
-        File targetFile = new File(templateData.getTargetFolderPath() + targetPath);
 
-		logger.info("生成文件位置:" + targetFile.getAbsolutePath());
-		File targetFolder = targetFile.getParentFile();
-		if(!targetFolder.exists()){
-			targetFolder.mkdirs();
-		}
         //初使化FreeMarker配置
 		Configuration configuration = new Configuration();
 		//设置要解析的模板所在的目录，并加载模板文件
@@ -69,10 +63,23 @@ public class CodeGenUtil implements CodeGen {
 
 		t = configuration.getTemplate(templateFile.getName(),charset);
 
+
+		// 加载数据库表和字段信息
+		templateData.setTable(tableUtil.loadTable(tableName));
+
+
+		// 目标文件
+		targetPath = StringTemplate.generatByTemplateStr(targetPath,templateData);
+
+		File targetFile = new File(templateData.getTargetFolderPath() + targetPath);
+		logger.info("生成文件位置:" + targetFile.getAbsolutePath());
+		File targetFolder = targetFile.getParentFile();
+		if(!targetFolder.exists()){
+			targetFolder.mkdirs();
+		}
 		if(targetFile == null){
 			throw new Exception(" target path err !");
 		}
-
 		File outFile = new File(targetFile.getAbsolutePath());
 		Writer out = null;
 		try {
@@ -85,7 +92,8 @@ public class CodeGenUtil implements CodeGen {
 			e1.printStackTrace();
 		}
 
-		templateData.setTable(tableUtil.loadTable(tableName));
+
+
 		try {
 			this.logger.info(JSONObject.toJSONString(templateData));
 			t.process(templateData, out);

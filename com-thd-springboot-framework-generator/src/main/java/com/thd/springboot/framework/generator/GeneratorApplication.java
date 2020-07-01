@@ -53,9 +53,10 @@ public class GeneratorApplication {
 //        cg.createCode("cg_example","service.ftl","CgExampleService.java");
 //        cg.createCode("cg_example","controller.ftl","CgExampleController.java");
 
-        cg.createCode("t_painting_ort_detail","entityParent.ftl","TPaintingOrtDetailParentEntity.java");
-        cg.createCode("t_painting_ort_detail","controller.ftl","AController.java");
-        cg.createCode("t_painting_ort_detail","mapper.ftl","TPaintingOrtDetailMapper.xml");
-        cg.createCode("t_painting_ort_detail","entity.ftl","TPaintingOrtDetailEntity.java");
+        cg.createCode("t_painting_actual_input_output","entityParent.ftl","${table.nameBigCamel}ParentEntity.java");
+        cg.createCode("t_painting_actual_input_output","controller.ftl","AController.java");
+        cg.createCode("t_painting_actual_input_output","mapper.ftl","${table.nameBigCamel}Mapper.xml");
+        cg.createCode("t_painting_actual_input_output","entity.ftl","${table.nameBigCamel}Entity.java");
+        cg.createCode("t_painting_actual_input_output","example.ftl","/${table.nameBigCamel}/${table.nameBigCamel}Example.java");
     }
 }

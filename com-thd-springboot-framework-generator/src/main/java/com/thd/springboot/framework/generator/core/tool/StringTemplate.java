@@ -3,10 +3,10 @@ package com.thd.springboot.framework.generator.core.tool;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,6 +38,67 @@ public class StringTemplate {
         }
         StringWriter out = new StringWriter();
         new Template("template", new StringReader(template), configuration).process(model, out);
+        return out.toString();
+    }
+
+    /**
+     * 根据字符串和数据直接生成字符串
+     * @param data 数据
+     * @param templateStr 字符串模板
+     * @return
+     * @throws Exception
+     */
+    public static String generatByTemplateStr(String templateStr,Object data) throws Exception{
+        Logger logger = LoggerFactory.getLogger(StringTemplate.class);
+
+        Configuration configuration = new Configuration();
+        String charset = "utf-8";
+
+        StringWriter out = new StringWriter();
+        new Template("template", new StringReader(templateStr.toString()), configuration).process(data, out);
+        return out.toString();
+    }
+
+    /**
+     * 根据模板和数据生成字符串
+     * @param data 数据
+     * @param templatePath 模板文件位置
+     * @return
+     * @throws Exception
+     */
+    public static String generatByTemplatePath(Object data,String templatePath) throws Exception{
+        Logger logger = LoggerFactory.getLogger(StringTemplate.class);
+
+        Configuration configuration = new Configuration();
+        String charset = "utf-8";
+        File templateFile = new File(templatePath);
+        File templateFolder = templateFile.getParentFile();
+        BufferedReader reader = null;
+        StringBuffer templateStr = new StringBuffer();
+
+        try{
+            reader = new BufferedReader(new FileReader(templatePath));
+            String tempStr ;
+            while( (tempStr = reader.readLine()) != null){
+                templateStr.append(tempStr);
+            }
+            reader.close();
+        }catch(Exception e){
+            throw new RuntimeException("read freemarker template err : [" + templatePath + "]");
+        }finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+
+
+        logger.info("模板:" + templateFile.getAbsolutePath());
+        StringWriter out = new StringWriter();
+        new Template("template", new StringReader(templateStr.toString()), configuration).process(data, out);
         return out.toString();
     }
 

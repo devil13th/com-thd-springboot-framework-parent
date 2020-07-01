@@ -15,9 +15,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
-public class PgsqlTableUtilImpl extends TableUtilImpl {
+public class GreenplumTableUtilImpl extends TableUtilImpl {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	public PgsqlTableUtilImpl(){
+	public GreenplumTableUtilImpl(){
 		super(DbType.MYSQL);
 		this.dataTypeMap.put("integer", "java.lang.Integer");
 		this.dataTypeMap.put("varchar", "java.lang.String");
@@ -167,10 +167,10 @@ public class PgsqlTableUtilImpl extends TableUtilImpl {
 	}
 
 	/**
-	 * 数据库字段数据类型转换成Java 数据类型
+     * 数据库字段数据类型转换成Java 数据类型
 	 * @param dbDataType 数据库字段的数据类型
 	 * @return
-	 */
+     */
 	public String convertDataType(String dbDataType){
 		String javaType = this.dataTypeMap.get(dbDataType);
 		if(javaType == null){

@@ -10,8 +10,8 @@ public enum DbType {
     MYSQL("MYSQL"),
     ORACLE("ORACLE"),
     SQLSERVER("SQLSERVER"),
-    PGSQL("PGSQL");
-
+    PGSQL("PGSQL"),
+    GREENPLUM("GREENPLUM");
     private String dbTypeName;
     DbType(String dbTypeName){
         this.dbTypeName = dbTypeName;

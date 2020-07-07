@@ -25,6 +25,8 @@ custom:
   map:
     name: codeGen
     version: 1.0
+    a: 1
+    b: 2
 
 
 

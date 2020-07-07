@@ -24,7 +24,7 @@ import java.util.stream.Stream;
  * @author: wanglei62
  * @DATE: 2020/3/21 23:06
  **/
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.thd")
 public class GeneratorApplication {
 
     public static void main(String[] args) throws Exception{

@@ -24,6 +24,11 @@ public class Column extends GetterSetterBean{
     // db数据类型
     private String dbDataType;
 
+    // 字符串长度
+    private Integer len;
+
+
+
     public Column(String name) {
         super(name);
     }

@@ -19,17 +19,16 @@ public class GreenplumTableUtilImpl extends TableUtilImpl {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	public GreenplumTableUtilImpl(){
 		super(DbType.MYSQL);
-		this.dataTypeMap.put("integer", "java.lang.Integer");
-		this.dataTypeMap.put("varchar", "java.lang.String");
-		this.dataTypeMap.put("text", "java.lang.String");
-		this.dataTypeMap.put("date", "java.util.Date");
-		this.dataTypeMap.put("decimal", "java.lang.Double");
-		this.dataTypeMap.put("numeric", "java.lang.Double");
-		this.dataTypeMap.put("float", "java.lang.Float");
-		this.dataTypeMap.put("double", "java.lang.Double");
-		this.dataTypeMap.put("datetime", "java.util.Date");
-		this.dataTypeMap.put("timestamp", "java.util.Date");
-		this.dataTypeMap.put("text", "java.lang.String");
+		this.dataTypeMap.put("integer", "Integer");
+		this.dataTypeMap.put("varchar", "String");
+		this.dataTypeMap.put("text", "String");
+		this.dataTypeMap.put("date", "Date");
+		this.dataTypeMap.put("decimal", "Double");
+		this.dataTypeMap.put("numeric", "BigDecimal");
+		this.dataTypeMap.put("float", "Float");
+		this.dataTypeMap.put("double", "Double");
+		this.dataTypeMap.put("datetime", "Date");
+		this.dataTypeMap.put("timestamp", "Date");;
 	}
 	
 	@Override

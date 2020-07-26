@@ -30,6 +30,8 @@ public class TemplateData {
     private Coding coding;
     @Autowired
     private CustomData customData;
+    @Value("${schema}")
+    private String schema;
 
 
 }

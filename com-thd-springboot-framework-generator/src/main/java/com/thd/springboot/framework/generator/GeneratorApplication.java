@@ -57,6 +57,6 @@ public class GeneratorApplication {
         cg.createCode("t_painting_actual_input_output","controller.ftl","AController.java");
         cg.createCode("t_painting_actual_input_output","mapper.ftl","${table.nameBigCamel}Mapper.xml");
         cg.createCode("t_painting_actual_input_output","entity.ftl","${table.nameBigCamel}Entity.java");
-        cg.createCode("t_painting_actual_input_output","example.ftl","/${table.nameBigCamel}/${table.nameBigCamel}Example.java");
+        cg.createCode("t_painting_actual_input_output","example.ftl","/${table.nameBigCamel}/${table.nameBigCamel}Example.txt");
     }
 }

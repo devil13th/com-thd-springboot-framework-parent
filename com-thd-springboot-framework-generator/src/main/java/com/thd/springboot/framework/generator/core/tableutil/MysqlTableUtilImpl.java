@@ -76,7 +76,8 @@ public class MysqlTableUtilImpl extends TableUtilImpl {
 					+ "IS_NULLABLE as isNullAble,"//3是否可以空
 					+ "DATA_TYPE as dataType,"//4数据类型
 					+ "COLUMN_KEY as columnKey,"//5是否主键
-					+ "COLUMN_COMMENT as columnComment "//6字段备注
+					+ "COLUMN_COMMENT as columnComment, "//6字段备注
+					+ "CHARACTER_MAXIMUM_LENGTH as len" // 7 字段长度
 					+ " from information_schema.COLUMNS where TABLE_NAME = ? "
 					+ " and TABLE_SCHEMA = ?  order by ORDINAL_POSITION asc";
 //		System.err.println(sql);
@@ -97,6 +98,7 @@ public class MysqlTableUtilImpl extends TableUtilImpl {
 			String keyInfo = columnMap.get("columnKey").toString();
 			String comment = columnMap.get("columnComment").toString();
 			String isNullAble = columnMap.get("isNullAble").toString();
+			Integer len = columnMap.get("len") == null ? null : Integer.valueOf(columnMap.get("len").toString());
 			//this.getLog().info(JSONObject.toJSONString(columnMap));
 
 
@@ -112,6 +114,8 @@ public class MysqlTableUtilImpl extends TableUtilImpl {
 			column.setIsPk(keyInfo != null && keyInfo.length() > 0 && "PRI".equalsIgnoreCase(keyInfo));
 			// 是否可以为空
 			column.setIsNullAble(keyInfo != null && keyInfo.length() > 0 && "YES".equalsIgnoreCase(keyInfo));
+			// 字符串长度
+			column.setLen(len);
 			this.getLog().debug(JSONObject.toJSONString(column));
 			return column;
 		}).collect(Collectors.toList());

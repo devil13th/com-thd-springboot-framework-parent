@@ -6,7 +6,7 @@ spring:
     username: proj_dscqm
     password: proj_dscqm
     driver-class-name: org.postgresql.Driver
-dbType: greenplum
+dbType: pgsql
 # 表空间
 schema: dscqm_pcg
 # 模板公共路径
@@ -25,10 +25,6 @@ custom:
   map:
     name: codeGen
     version: 1.0
-    a: 1
-    b: 2
-    c: 3
-    d: 4
 
 
 

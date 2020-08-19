@@ -4,7 +4,7 @@
 <#assign ifStart="<#if " />
 <#assign ifEnd="</#if> " />
 ===========  表信息  ==========
-${get}schema}   ${schema}
+${get}schema}   ${table.schema}
 ${get}table.name}   ${table.name}
 ${get}table.nameCamel} ${table.nameCamel}
 ${get}table.nameBigCamel} ${table.nameBigCamel}
@@ -27,6 +27,7 @@ ${get}table.pkColumn.isNullAble?c} ${table.pkColumn.isNullAble?c}
 ${get}col.name} ${col.name}
 ${get}col.nameCamel} ${col.nameCamel}
 ${get}col.nameBigCamel} ${col.nameBigCamel}
+${get}col.len!"空值"} ${col.len!"空值"}
 ${get}col.comment} ${col.comment}
 ${get}col.dataType} ${col.dataType}
 ${get}col.dbDataType} ${col.dbDataType}
@@ -65,7 +66,15 @@ ${listStart} table.normalColumns as col>
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     ${ifEnd}
     private ${get}col.dataType} ${get}col.nameCamel};
-
-
     ${ifStart} col_has_next> // end ${ifEnd}
+    ${ifEnd}
 ${listEnd}
+--------------------------------------
+<#list table.normalColumns as col>
+    @TableField("${col.name}")
+    <#if  col.dbDataType=="date">
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    </#if>
+    private ${col.dataType} ${col.nameCamel};
+    <#if  col_has_next> // 还有下次循环 </#if>
+</#list>

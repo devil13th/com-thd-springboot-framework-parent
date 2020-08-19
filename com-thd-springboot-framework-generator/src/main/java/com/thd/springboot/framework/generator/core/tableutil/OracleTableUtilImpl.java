@@ -15,10 +15,10 @@ public class OracleTableUtilImpl extends TableUtilImpl {
 	public OracleTableUtilImpl(){
         super(DbType.ORACLE);
 
-		this.dataTypeMap.put("clob", "java.lang.String");
-		this.dataTypeMap.put("date", "java.util.Date");
-		this.dataTypeMap.put("number", "java.lang.Double");
-		this.dataTypeMap.put("varchar2", "java.lang.String");
+		this.dataTypeMap.put("clob", "String");
+		this.dataTypeMap.put("date", "Date");
+		this.dataTypeMap.put("number", "Double");
+		this.dataTypeMap.put("varchar2", "String");
 	}
 
 	@Override

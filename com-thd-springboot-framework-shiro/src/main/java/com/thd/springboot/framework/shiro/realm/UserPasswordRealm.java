@@ -37,9 +37,8 @@ public class UserPasswordRealm extends AuthorizingRealm {
      * 授权
      */
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        //获取登录用户
-        ShiroUser user = (ShiroUser) principalCollection.getPrimaryPrincipal();
-
+        // 获取登录用户
+        ShiroUser user = (ShiroUser)principalCollection.getPrimaryPrincipal();
         //添加角色和权限
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         for (ShiroRole role : user.getRoles()) {

@@ -18,6 +18,12 @@ public class ShiroUser implements Serializable {
     // 凭证  例如密码 或 短信验证码
     private String credential;
 
+    /**
+     * 用户对应的角色集合
+     */
+    private Set<ShiroRole> roles;
+
+
     public ShiroUser(){}
 
     public ShiroUser(String id, String userName,String phone, Set<ShiroRole> roles) {
@@ -83,8 +89,5 @@ public class ShiroUser implements Serializable {
         this.credential = credential;
     }
 
-    /**
-     * 用户对应的角色集合
-     */
-    private Set<ShiroRole> roles;
+
 }

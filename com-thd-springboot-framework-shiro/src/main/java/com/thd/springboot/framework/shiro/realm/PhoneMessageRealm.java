@@ -26,6 +26,7 @@ public class PhoneMessageRealm extends AuthorizingRealm {
 
     @Autowired
     private ShiroService shiroService;
+
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public PhoneMessageRealm(){

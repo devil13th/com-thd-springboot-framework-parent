@@ -13,6 +13,10 @@ import java.util.Set;
 public class ShiroRole implements Serializable {
     private String id;
     private String roleName;
+    /**
+     * 角色对应权限集合
+     */
+    private Set<ShiroPermissions> permissions;
 
     public ShiroRole(String id, String roleName, Set<ShiroPermissions> permissions) {
         this.id = id;
@@ -20,10 +24,7 @@ public class ShiroRole implements Serializable {
         this.permissions = permissions;
     }
 
-    /**
-     * 角色对应权限集合
-     */
-    private Set<ShiroPermissions> permissions;
+
 
     public String getId() {
         return id;

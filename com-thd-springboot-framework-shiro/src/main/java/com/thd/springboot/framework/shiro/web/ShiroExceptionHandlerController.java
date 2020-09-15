@@ -34,7 +34,7 @@ public class ShiroExceptionHandlerController {
     }
 
     @ExceptionHandler(AuthenticationException.class)
-    public Message handleAuthenticationExceptionException(AuthorizationException e){
+    public Message handleAuthenticationExceptionException(AuthenticationException e){
         logger.error(e.getMessage(), e);
         return Message.error("账号或密码错误");
     }

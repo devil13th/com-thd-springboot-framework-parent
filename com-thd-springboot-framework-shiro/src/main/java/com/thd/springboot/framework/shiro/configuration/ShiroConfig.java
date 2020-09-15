@@ -377,8 +377,9 @@ public class ShiroConfig {
 
         //登录成功后的跳转地址
         bean.setSuccessUrl("/index");
-        // 未授权时跳转到的地址
-        bean.setUnauthorizedUrl("/unauthorizedurl");
+
+        // 未授权时跳转到的地址(不设置则可以在MyPermFilter中设置返回的JSON)
+        // bean.setUnauthorizedUrl("/unauthorizedurl");
 
 
         Map<String, String> map = new LinkedHashMap<>();
@@ -401,7 +402,8 @@ public class ShiroConfig {
         map.put("/validatecode", "validatecode");
 
         map.put("/testRedis/*","anon");
-        map.put("/perm/*","anon,authc[12345],prems[admin,alal]");
+//        map.put("/perm/*","anon,authc[12345],perms[admin,alal]");
+        map.put("/perm/*","anon,prems");
         map.put("/dynamicPerm","prems");
         map.put("/**", "authc");
 

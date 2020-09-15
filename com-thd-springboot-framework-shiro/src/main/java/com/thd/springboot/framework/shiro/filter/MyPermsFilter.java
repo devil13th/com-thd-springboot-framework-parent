@@ -26,13 +26,14 @@ public class MyPermsFilter extends PermissionsAuthorizationFilter {
      * @return
      * @throws IOException
      */
-//    @Override
-//    public boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws IOException {
-//        // 获取接口请求路径
-//        String servletPath = WebUtils.toHttp(request).getServletPath();
-//        mappedValue = new String[]{servletPath};
-//        return super.isAccessAllowed(request, response, mappedValue);
-//    }
+    @Override
+    public boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws IOException {
+        // 获取接口请求路径
+        String servletPath = WebUtils.toHttp(request).getServletPath();
+        mappedValue = new String[]{servletPath};
+        boolean b = super.isAccessAllowed(request, response, mappedValue);
+        return b;
+    }
 
     /**
      * 解决权限不足302问题
@@ -43,11 +44,15 @@ public class MyPermsFilter extends PermissionsAuthorizationFilter {
      */
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws IOException {
-        Subject subject = getSubject(request, response);
+        /**
+         * 可以直接返回错误信息  也可以抛出 AuthorizationException 异常后定义Controller的异常切面处理(@RestControllerAdvice)
+         */
+        WebUtils.toHttp(response).setContentType("application/json; charset=utf-8");
+        WebUtils.toHttp(response).getWriter().print("{\"code\":401,\"msg\":\"没有权限\"}");
+
+        /* Subject subject = getSubject(request, response);
         if (subject.getPrincipal() != null) {
-            /**
-             * 判断是否有权限，调用shiro  hasRole  /  hasPermission
-             */
+
             return super.onAccessDenied(request,response);
 
 
@@ -65,6 +70,7 @@ public class MyPermsFilter extends PermissionsAuthorizationFilter {
             WebUtils.toHttp(response).setContentType("application/json; charset=utf-8");
             WebUtils.toHttp(response).getWriter().print("{code:401,msg:'没有权限'}");
         }
+        */
         return false;
     }
 

@@ -25,6 +25,10 @@
     <artifactId>com-thd-springboot-framework-shiro</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>com.thd.springboot.framework</groupId>
+            <artifactId>com-thd-springboot-framework-basic</artifactId>
+        </dependency>
         <!-- redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

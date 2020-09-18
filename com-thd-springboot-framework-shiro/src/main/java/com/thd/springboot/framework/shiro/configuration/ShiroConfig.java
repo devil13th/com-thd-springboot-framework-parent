@@ -1,9 +1,6 @@
 package com.thd.springboot.framework.shiro.configuration;
 
-import com.thd.springboot.framework.shiro.filter.MyAnonFilter;
-import com.thd.springboot.framework.shiro.filter.MyAuthcFilter;
-import com.thd.springboot.framework.shiro.filter.MyPermsFilter;
-import com.thd.springboot.framework.shiro.filter.MyValidateCodeFilter;
+import com.thd.springboot.framework.shiro.filter.*;
 import com.thd.springboot.framework.shiro.listener.MyListener;
 import com.thd.springboot.framework.shiro.realm.PhoneMessageRealm;
 import com.thd.springboot.framework.shiro.realm.UserPasswordRealm;
@@ -345,7 +342,7 @@ public class ShiroConfig {
     ShiroFilterFactoryBean shiroFilterFactoryBean() {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
 
-        // 可以添加自己定义的过滤器
+        // 默认的过滤器
         /*
         简写(加粗为常用)		名称			优先级(1为最高)	说明	对应Java类
         anon				匿名拦截器		1				不需要登录就能访问,一般用于静态资源,或者移动端接口	org.apache.shiro.web.filter.authc.AnonymousFilter
@@ -364,6 +361,9 @@ public class ShiroConfig {
         filters.put("anon", new MyAnonFilter());
         filters.put("authc", new MyAuthcFilter());
         filters.put("prems", new MyPermsFilter());
+        filters.put("roles", new MyRoleFilter());
+
+        // 自定义一个拦截器 - 用于生成验证码
         filters.put("validatecode", new MyValidateCodeFilter());
 
         bean.setFilters(filters);
@@ -402,8 +402,23 @@ public class ShiroConfig {
         map.put("/validatecode", "validatecode");
 
         map.put("/testRedis/*","anon");
-//        map.put("/perm/*","anon,authc[12345],perms[admin,alal]");
-        map.put("/perm/*","anon,prems");
+
+        // 必须具有admin,alal权限
+//        map.put("/perm/*","anon,authc[12345],prems[admin,alal]");
+//        map.put("/perm/*","anon,prems,roles"); // 多种拦截
+//        map.put("/perm/*","prems[admin]");
+//        map.put("/role/*","roles[admin]");
+
+        // perms 过滤器是以url为标识 进行权限的校验
+        // 通常prems后面是不带参数的(和roles不一样,可参见后面的roles[admin],因为 url就是授权资源标识)
+        map.put("/testPerm","prems");  // 当url匹配到testPerm时候进入到prems过滤器，判断当前用户是否有/testPerm标识的权限
+        map.put("/testPermAdd","prems");  // 当url匹配到testPermAdd时候进入到prems过滤器，判断当前用户是否有/testPermAdd标识的权限
+
+        // roles 过滤器
+        // roles 过滤器不会对url
+        map.put("/testRole","roles");  // 用roles的过滤器,如何过滤是使用过滤器的逻辑
+        map.put("/testRoleAdmin","roles[admin]"); // 判断当前用户是否在当前URL(/testRoleAction)上有admin角色
+
         map.put("/dynamicPerm","prems");
         map.put("/**", "authc");
 

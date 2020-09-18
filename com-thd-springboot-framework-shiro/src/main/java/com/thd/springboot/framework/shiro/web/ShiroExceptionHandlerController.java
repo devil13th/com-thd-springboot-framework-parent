@@ -25,18 +25,21 @@ public class ShiroExceptionHandlerController {
     @ExceptionHandler(UnauthorizedException.class)
     public Message handlUnauthorizedExceptionException(UnauthorizedException e){
         logger.error(e.getMessage(), e);
-        return Message.error("尚未授权");
+//        return Message.error("尚未授权");
+        return Message.error(e.getMessage());
     }
     @ExceptionHandler(AuthorizationException.class)
     public Message handleAuthorizationException(AuthorizationException e){
         logger.error(e.getMessage(), e);
-        return Message.error("没有权限，请联系管理员授权");
+//        return Message.error("没有权限，请联系管理员授权");
+        return Message.error(e.getMessage());
     }
 
     @ExceptionHandler(AuthenticationException.class)
     public Message handleAuthenticationExceptionException(AuthenticationException e){
         logger.error(e.getMessage(), e);
-        return Message.error("账号或密码错误");
+//        return Message.error("账号或密码错误");
+        return Message.error(e.getMessage());
     }
 
 }

@@ -21,7 +21,7 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
     public abstract BasicMapper<T> basicMapper();
 
     @Override
-    public Integer add(T entity) {
+    public Integer insert(T entity) {
         if(entity.getCreateTime() == null){
             entity.setCreateTime(new Date());
         }
@@ -29,7 +29,7 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
             entity.setModifyTime(new Date());
         }
         entity.setIsDeleted(0);
-        int result =  basicMapper().add(entity);
+        int result =  basicMapper().insert(entity);
         if(result != 1){
             throw new RuntimeException(" add failed ");
         }
@@ -51,13 +51,14 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
     }
 
     @Override
-    public Integer physicsDelete(Object id) {
-        return basicMapper().physicsDelete(id);
+    public Integer deletePhysics(Object id) {
+        return basicMapper().deletePhysics(id);
     }
 
     @Override
-    public Integer logicDelete(Object id) {
+    public Integer deleteLogic(Object id) {
         T entity = this.queryById(id);
+        entity.setModifyTime(new Date());
         entity.setIsDeleted(1);
         return this.basicMapper().update(entity);
     }
@@ -76,26 +77,31 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
     }
 
     @Override
+    public T queryByCondition(T entity) {
+        return basicMapper().queryByCondition(entity);
+    }
+
+    @Override
     public List<T> queryEq(T entity) {
-        return basicMapper().queryEq(entity);
+        return basicMapper().queryListEq(entity);
     }
 
     @Override
     public List<T> queryLike(T entity) {
-        return basicMapper().queryLike(entity);
+        return basicMapper().queryListLike(entity);
     }
 
     @Override
-    public PageInfo<T> queryEqByPage(T entity) {
+    public PageInfo<T> queryListEqByPage(T entity) {
         PageUtils.setPageHelper(entity);
-        PageInfo<T> pager = new PageInfo<T>(basicMapper().queryEq(entity));
+        PageInfo<T> pager = new PageInfo<T>(basicMapper().queryListEq(entity));
         return pager;
     }
 
     @Override
-    public PageInfo<T> queryLikeByPage(T entity) {
+    public PageInfo<T> queryListLikeByPage(T entity) {
         PageUtils.setPageHelper(entity);
-        PageInfo<T> pager = new PageInfo<T>(basicMapper().queryLike(entity));
+        PageInfo<T> pager = new PageInfo<T>(basicMapper().queryListLike(entity));
         return pager;
     }
 

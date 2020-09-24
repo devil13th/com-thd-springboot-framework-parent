@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.io.*;
 
@@ -66,6 +67,13 @@ public class CodeGenUtil implements CodeGen {
 
 		// 加载数据库表和字段信息
 		templateData.setTable(tableUtil.loadTable(tableName));
+
+		// 将包名替换成实体
+		templateData.getCoding().setBasicPackageName(StringTemplate.generatByTemplateStr(templateData.getCoding().getBasicPackageName(),templateData));
+		templateData.getCoding().setControllerPackageName(StringTemplate.generatByTemplateStr(templateData.getCoding().getControllerPackageName(),templateData));
+		templateData.getCoding().setEntityPackageName(StringTemplate.generatByTemplateStr(templateData.getCoding().getEntityPackageName(),templateData));
+		templateData.getCoding().setMapperPackageName(StringTemplate.generatByTemplateStr(templateData.getCoding().getMapperPackageName(),templateData));
+		templateData.getCoding().setServicePackageName(StringTemplate.generatByTemplateStr(templateData.getCoding().getServicePackageName(),templateData));
 
 
 		// 目标文件

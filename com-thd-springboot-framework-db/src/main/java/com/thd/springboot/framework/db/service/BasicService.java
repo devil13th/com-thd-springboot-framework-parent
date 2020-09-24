@@ -18,7 +18,7 @@ public interface BasicService<T extends BasicEntity>  {
      * @param entity 实体
      * @return
      */
-    Integer add(T entity);
+    Integer insert(T entity);
 
     /**
      * 删除实体,根据主键
@@ -26,7 +26,7 @@ public interface BasicService<T extends BasicEntity>  {
      * @param id
      * @return
      */
-    Integer physicsDelete(Object id);
+    Integer deletePhysics(Object id);
 
     /**
      * 逻辑删除,根据主键
@@ -34,7 +34,7 @@ public interface BasicService<T extends BasicEntity>  {
      * @param id
      * @return
      */
-    Integer logicDelete(Object id);
+    Integer deleteLogic(Object id);
 
     /**
      * 更新实体,根据主键
@@ -51,6 +51,13 @@ public interface BasicService<T extends BasicEntity>  {
      * @return
      */
     T queryById(Object id);
+    /**
+     * 根据条件查询某一个实体
+     *
+     * @param entity 查询条件
+     * @return
+     */
+    T queryByCondition(T entity);
 
     /**
      * 返回实体List,根据条件,精确匹配
@@ -74,7 +81,7 @@ public interface BasicService<T extends BasicEntity>  {
      * @param entity 实体
      * @return
      */
-    PageInfo<T> queryEqByPage(T entity);
+    PageInfo<T> queryListEqByPage(T entity);
 
     /**
      * 返回实体List,根据条件,模糊匹配且分页
@@ -82,7 +89,7 @@ public interface BasicService<T extends BasicEntity>  {
      * @param entity 实体
      * @return
      */
-    PageInfo<T> queryLikeByPage(T entity);
+    PageInfo<T> queryListLikeByPage(T entity);
 
 
     /**

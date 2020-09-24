@@ -15,10 +15,11 @@ templateFolderPath: D:\devil13th\github\com-thd-springboot-framework-parent\com-
 targetFolderPath: D:\deleteme\cg\
 # 包配置
 coding:
-  servicePackageName: com.thd.springboot.framework.example.service
-  mapperPackageName: com.thd.springboot.framework.example.mapper
-  controllerPackageName: com.thd.springboot.framework.example.controller
-  entityPackageName: com.thd.springboot.framework.example.entity
+  basicPackageName: com.thd.springboot.framework
+  servicePackageName: example.service
+  mapperPackageName: example.mapper
+  controllerPackageName: example.controller
+  entityPackageName: example.entity
 # 自定义的属性 - map类型
 
 custom:

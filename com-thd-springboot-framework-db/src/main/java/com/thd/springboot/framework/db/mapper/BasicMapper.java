@@ -19,7 +19,7 @@ public interface BasicMapper<T extends BasicEntity>  {
      * @param entity 实体
      * @return
      */
-    Integer add(T entity);
+    Integer insert(T entity);
 
     /**
      * 批量插入
@@ -33,7 +33,7 @@ public interface BasicMapper<T extends BasicEntity>  {
      * @param id
      * @return
      */
-    Integer physicsDelete(@Param("id")Object id);
+    Integer deletePhysics(@Param("id")Object id);
 
     /**
      * 逻辑删除,根据主键
@@ -41,7 +41,7 @@ public interface BasicMapper<T extends BasicEntity>  {
      * @param id
      * @return
      */
-    Integer logicDelete(Object id);
+    Integer deleteLogic(Object id);
 
     /**
      * 更新实体,根据主键
@@ -59,13 +59,22 @@ public interface BasicMapper<T extends BasicEntity>  {
      */
     T queryById(Object id);
 
+
+    /**
+     * 根据条件查询某一个实体
+     *
+     * @param entity 查询条件
+     * @return
+     */
+    T queryByCondition(T entity);
+
     /**
      * 返回实体List,根据条件
      *
      * @param entity 实体
      * @return
      */
-    List<T> queryEq(T entity);
+    List<T> queryListEq(T entity);
 
     /**
      * 返回实体List,根据条件,模糊匹配
@@ -73,7 +82,7 @@ public interface BasicMapper<T extends BasicEntity>  {
      * @param entity 实体
      * @return
      */
-    List<T> queryLike(T entity);
+    List<T> queryListLike(T entity);
 
 
 }

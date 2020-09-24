@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties("coding")
 public class Coding {
+    // basic包名
+    private String basicPackageName;
     // service 包名
     private String servicePackageName;
     // mapper 包名

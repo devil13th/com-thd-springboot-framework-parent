@@ -1,6 +1,6 @@
 package com.thd.springboot.framework.shiro.sessiondao;
 
-import com.alibaba.fastjson.JSONObject;
+//import com.alibaba.fastjson.JSONObject;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
@@ -42,9 +42,11 @@ public class MySessionDao extends AbstractSessionDAO {
         assignSessionId(session, sessionId);
         logger.debug("创建seesion,id=[{}]", session.getId().toString());
         try {
-            String sessionJsonStr = JSONObject.toJSONString(session);
-            System.out.println(sessionJsonStr);
+//            String sessionJsonStr = JSONObject.toJSONString(session);
+//            System.out.println(sessionJsonStr);
             myShiroRedisTemplate.opsForValue().set(getKey(session.getId().toString()), session,30, TimeUnit.MINUTES);
+
+
         } catch (Exception e) {
             logger.error(e.getMessage(),e);
         }
@@ -69,8 +71,8 @@ public class MySessionDao extends AbstractSessionDAO {
         logger.debug("更新seesion,id=[{}]", session.getId().toString());
         try {
 
-            String sessionJsonStr = JSONObject.toJSONString(session);
-            System.out.println(sessionJsonStr);
+//            String sessionJsonStr = JSONObject.toJSONString(session);
+//            System.out.println(sessionJsonStr);
 
 
             myShiroRedisTemplate.opsForValue().set(getKey(session.getId().toString()), session,30,TimeUnit.MINUTES);

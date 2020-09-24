@@ -1,7 +1,7 @@
 package com.thd.springboot.framework.db.utils;
 
 import com.github.pagehelper.PageHelper;
-import com.thd.springboot.framework.db.entity.BasicEntity;
+import com.thd.springboot.framework.entity.BasicEntity;
 
 /**
  * com.thd.springboot.framework.db.utils.PageUtils

@@ -1,9 +1,10 @@
 package com.thd.springboot.framework.db.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+//import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageInfo;
-import com.thd.springboot.framework.db.entity.BasicEntity;
 import com.thd.springboot.framework.db.mapper.BasicMapper;
+import com.thd.springboot.framework.entity.BasicEntity;
+//import com.thd.springboot.framework.db.mapper.BasicMapper;
 import com.thd.springboot.framework.db.utils.PageUtils;
 
 import java.util.Date;
@@ -98,11 +99,7 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
         return pager;
     }
 
-    @Override
-    public List<T> queryByWrapper(QueryWrapper<T> queryWrapper) {
-        queryWrapper.eq("is_deleted","0");
-        return basicMapper().selectList(queryWrapper);
-    }
+
 
 
 }

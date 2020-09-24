@@ -1,7 +1,7 @@
 package com.thd.springboot.framework.db.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.thd.springboot.framework.db.entity.BasicEntity;
+//import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.thd.springboot.framework.entity.BasicEntity;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  * @author: wanglei62
  * @DATE: 2020/3/24 19:16
  **/
-public interface BasicMapper<T extends BasicEntity> extends BaseMapper<T> {
+public interface BasicMapper<T extends BasicEntity>  {
     /**
      * 保存实体
      *

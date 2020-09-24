@@ -1,8 +1,5 @@
 package com.thd.springboot.framework.redis.configuration;
 
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -111,22 +108,22 @@ public class RedisConfig {
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
 
         // =================== 创建 FastJsonRedisSerializer 序列化器 使用fastjson进行序列化和反序列化=================== //
-        FastJsonRedisSerializer fastJsonRedisSerializer = new FastJsonRedisSerializer(Object.class);
+//        FastJsonRedisSerializer fastJsonRedisSerializer = new FastJsonRedisSerializer(Object.class);
 
 
 
 
         //2.定义一个配置，设置编码方式，和格式化的形式
-        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+//        FastJsonConfig fastJsonConfig = new FastJsonConfig();
 
         //3.设置成了PrettyFormat格式
-        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
+//        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
         //4.处理中文乱码问题
         List<MediaType> fastMediaTypes =  new ArrayList<>();
         fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
 
-        fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteClassName);
-        fastJsonRedisSerializer.setFastJsonConfig(fastJsonConfig);
+//        fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteClassName);
+//        fastJsonRedisSerializer.setFastJsonConfig(fastJsonConfig);
 
 
         /**

@@ -2,6 +2,7 @@ package com.thd.springboot.framework.db.mapper;
 
 //import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.thd.springboot.framework.entity.BasicEntity;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -43,6 +44,14 @@ public interface BasicMapper<T extends BasicEntity>  {
      */
     Integer deleteLogic(Object id);
 
+
+    /**
+     * 根据条件逻辑删除
+     * @param entity 条件
+     * @return
+     */
+    Integer deleteLogicByCondition(T entity);
+
     /**
      * 更新实体,根据主键
      *
@@ -50,6 +59,9 @@ public interface BasicMapper<T extends BasicEntity>  {
      * @return
      */
     Integer update(T entity);
+
+
+
 
     /**
      * 返回实体,根据主键
@@ -83,6 +95,9 @@ public interface BasicMapper<T extends BasicEntity>  {
      * @return
      */
     List<T> queryListLike(T entity);
+
+
+
 
 
 }

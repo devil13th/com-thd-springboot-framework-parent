@@ -65,6 +65,8 @@ public class CodeGenUtil implements CodeGen {
 		t = configuration.getTemplate(templateFile.getName(),charset);
 
 
+
+		templateData.setDbType(templateData.getDbType().toLowerCase());
 		// 加载数据库表和字段信息
 		templateData.setTable(tableUtil.loadTable(tableName));
 

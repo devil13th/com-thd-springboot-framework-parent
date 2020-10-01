@@ -26,7 +26,7 @@ public interface BasicService<T extends BasicEntity>  {
      * @param id
      * @return
      */
-    Integer deletePhysics(Object id);
+    Integer deletePhysicsById(Object id);
 
     /**
      * 逻辑删除,根据主键
@@ -34,7 +34,7 @@ public interface BasicService<T extends BasicEntity>  {
      * @param id
      * @return
      */
-    Integer deleteLogic(Object id);
+    Integer deleteLogicById(Object id);
 
     /**
      * 更新实体,根据主键

@@ -34,7 +34,7 @@ public interface BasicMapper<T extends BasicEntity>  {
      * @param id
      * @return
      */
-    Integer deletePhysics(@Param("id")Object id);
+    Integer deletePhysicsById(@Param("id")Object id);
 
     /**
      * 逻辑删除,根据主键
@@ -42,7 +42,7 @@ public interface BasicMapper<T extends BasicEntity>  {
      * @param id
      * @return
      */
-    Integer deleteLogic(Object id);
+    Integer deleteLogicById(Object id);
 
 
     /**

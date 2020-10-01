@@ -51,12 +51,12 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
     }
 
     @Override
-    public Integer deletePhysics(Object id) {
-        return getMapper().deletePhysics(id);
+    public Integer deletePhysicsById(Object id) {
+        return getMapper().deletePhysicsById(id);
     }
 
     @Override
-    public Integer deleteLogic(Object id) {
+    public Integer deleteLogicById(Object id) {
         T entity = this.queryById(id);
         entity.setModifyTime(new Date());
         entity.setIsDeleted(1);

@@ -25,7 +25,7 @@ import java.util.Optional;
 public class MyPage implements Serializable {
     @ApiModelProperty("页码，从1开始")
 //    @TableField(exist = false)
-    private Integer currentPage;
+    private Integer pageNum;
     @ApiModelProperty("每页大小")
 //    @JSONField(serialize = false)
 //    @TableField(exist = false)
@@ -70,7 +70,7 @@ public class MyPage implements Serializable {
 
 
     public String toString() {
-        return "Page(pageNum=" + this.getCurrentPage() + ", pageSize=" + this.getPageSize() + ", sortField=" + this.getSortField() + ", sortOrder=" + this.getSortOrder() + ", dataSql=" + this.getDataSql() + ")";
+        return "Page(pageNum=" + this.getPageNum() + ", pageSize=" + this.getPageSize() + ", sortField=" + this.getSortField() + ", sortOrder=" + this.getSortOrder() + ", dataSql=" + this.getDataSql() + ")";
     }
 
 }

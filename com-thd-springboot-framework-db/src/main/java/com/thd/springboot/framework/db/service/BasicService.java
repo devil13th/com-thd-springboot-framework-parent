@@ -21,6 +21,12 @@ public interface BasicService<T extends BasicEntity>  {
     Integer insert(T entity);
 
     /**
+     * 批量新增
+     * @param entityList
+     */
+    void insertBatch(List<T> entityList);
+
+    /**
      * 删除实体,根据主键
      *
      * @param id
@@ -91,10 +97,6 @@ public interface BasicService<T extends BasicEntity>  {
      */
     PageInfo<T> queryListLikeByPage(T entity);
 
+    //TODO add updateByCondition deleteLogicByCondition method
 
-    /**
-     * 批量新增
-     * @param entityList
-     */
-    void insertBatch(List<T> entityList);
 }

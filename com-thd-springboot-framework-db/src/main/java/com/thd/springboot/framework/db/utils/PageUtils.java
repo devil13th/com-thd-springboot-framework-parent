@@ -14,12 +14,12 @@ public class PageUtils {
     public static final int DEFAULT_PAGE_SIZE = 20;
 
     public static <T extends BasicEntity> void setPageHelper(T entity) {
-        if (entity.getCurrentPage() == null) {
-            entity.setCurrentPage(DEFAULT_PAGE_NUM);
+        if (entity.getPageNum() == null) {
+            entity.setPageNum(DEFAULT_PAGE_NUM);
         }
         if (entity.getPageSize() == null) {
             entity.setPageSize(DEFAULT_PAGE_SIZE);
         }
-        PageHelper.startPage(entity.getCurrentPage(), entity.getPageSize(), entity.getOrderBy());
+        PageHelper.startPage(entity.getPageNum(), entity.getPageSize(), entity.getOrderBy());
     }
 }

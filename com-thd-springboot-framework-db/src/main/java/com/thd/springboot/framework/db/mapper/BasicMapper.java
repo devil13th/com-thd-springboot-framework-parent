@@ -60,8 +60,12 @@ public interface BasicMapper<T extends BasicEntity>  {
      */
     Integer update(T entity);
 
-
-
+    /**
+     * 批量更新
+     * @param targetBean 要更新的值
+     * @param conditionBean 更新的条件
+     */
+    void updateBatch(@Param(value="targetBean") T targetBean,@Param(value="conditionBean") T conditionBean);
 
     /**
      * 返回实体,根据主键

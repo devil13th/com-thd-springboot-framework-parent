@@ -72,6 +72,14 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
     }
 
     @Override
+    public void updateBatch(T targetBean,T conditionBean){
+        if(targetBean.getModifyTime() == null){
+            targetBean.setModifyTime(new Date());
+        }
+        getMapper().updateBatch(targetBean,conditionBean);
+    }
+
+    @Override
     public T queryById(Object id) {
         return getMapper().queryById(id);
     }

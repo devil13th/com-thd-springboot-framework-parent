@@ -53,6 +53,14 @@ public interface BasicMapper<T extends BasicEntity>  {
     Integer deleteLogicByCondition(T entity);
 
     /**
+     * 批量逻辑删除,根据主键
+     *
+     * @param ids
+     * @return
+     */
+    Integer deleteLogicByIds(List<Object> ids);
+
+    /**
      * 更新实体,根据主键
      *
      * @param entity 实体

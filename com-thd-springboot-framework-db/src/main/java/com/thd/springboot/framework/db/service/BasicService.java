@@ -51,6 +51,10 @@ public interface BasicService<T extends BasicEntity>  {
     Integer update(T entity);
 
     /**
+     * 批量更新
+     */
+    public void updateBatch(T targetBean,T conditionBean);
+    /**
      * 返回实体,根据主键
      *
      * @param id 主键

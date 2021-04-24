@@ -32,6 +32,9 @@ public class MysqlTableUtilImpl extends TableUtilImpl {
 		this.dataTypeMap.put("double", "Double");
 		this.dataTypeMap.put("datetime", "Date");
 		this.dataTypeMap.put("text", "String");
+		this.dataTypeMap.put("mediumtext", "String");
+		this.dataTypeMap.put("longtext", "String");
+
 	}
 	
 	@Override

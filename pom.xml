@@ -30,6 +30,8 @@
         <tsbf.tech.version>1.0.0-SNAPSHOT</tsbf.tech.version>
     </properties>
 
+
+
     <build>
         <plugins>
             <!-- 设置maven编译使用的jdk -->

@@ -55,10 +55,10 @@ public interface BasicMapper<T extends BasicEntity>  {
     /**
      * 批量逻辑删除,根据主键
      *
-     * @param ids
+     * @param idList 主键集合
      * @return
      */
-    Integer deleteLogicByIds(List<Object> ids);
+    Integer deleteLogicByIds(@Param("idList")List<Object> idList);
 
     /**
      * 更新实体,根据主键

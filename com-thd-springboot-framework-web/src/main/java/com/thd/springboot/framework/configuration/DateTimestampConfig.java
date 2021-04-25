@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.thd.springboot.framework.converts.DateConverter;
+import com.thd.springboot.framework.converts.LocalDateConverter;
+import com.thd.springboot.framework.converts.LocalDateTimeConverter;
 import com.thd.springboot.framework.converts.TimestampConverter;
 import com.thd.springboot.framework.jackson.jsondeserializers.JsonDateDeserializer;
 import com.thd.springboot.framework.jackson.jsondeserializers.JsonTimestampDeserializer;
@@ -16,6 +18,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -47,7 +51,23 @@ public class DateTimestampConfig {
     }
 
 
+    /**
+     * localDate转换器 , 用于转换@RequestParam和@PathVariable修饰的参数
+     * @return
+     */
+    @Bean
+    public Converter<String, LocalDate> localDateConverter(){
+        return new LocalDateConverter();
+    }
 
+    /**
+     * localDate转换器 , 用于转换@RequestParam和@PathVariable修饰的参数
+     * @return
+     */
+    @Bean
+    public Converter<String, LocalDateTime> localDateTimeConverter(){
+        return new LocalDateTimeConverter();
+    }
 
 
 

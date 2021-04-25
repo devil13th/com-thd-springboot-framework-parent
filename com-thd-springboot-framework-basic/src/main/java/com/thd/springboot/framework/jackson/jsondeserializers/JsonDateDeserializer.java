@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.jsontype.TypeDeserializer;
+import com.thd.springboot.framework.utils.DateUtils;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -24,11 +25,13 @@ public class JsonDateDeserializer extends JsonDeserializer<Date> {
 
     private Date der(JsonParser jsonParser, DeserializationContext context, TypeDeserializer typeDeserializer) throws IOException {
         String dateStr = jsonParser.getText();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            Date d = sdf.parse(dateStr);
+//            Date d = sdf.parse(dateStr);
+            Date d = DateUtils.stringToDate(dateStr);
             return d;
-        } catch (ParseException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }

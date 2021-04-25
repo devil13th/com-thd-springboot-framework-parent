@@ -42,6 +42,10 @@ public interface BasicService<T extends BasicEntity>  {
      */
     Integer deleteLogicById(Object id);
 
+
+
+    void deleteLogicByIds(List<Object> idList);
+
     /**
      * 更新实体,根据主键
      *

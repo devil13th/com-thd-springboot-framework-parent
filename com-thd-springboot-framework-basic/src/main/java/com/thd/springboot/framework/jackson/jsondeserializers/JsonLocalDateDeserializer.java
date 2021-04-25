@@ -8,14 +8,13 @@ import com.fasterxml.jackson.databind.jsontype.TypeDeserializer;
 import com.thd.springboot.framework.utils.DateUtils;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.util.Date;
 
 //时间戳反序列化时间
-public class JsonLocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
+public class JsonLocalDateDeserializer extends JsonDeserializer<LocalDate> {
     @Override
-    public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    public LocalDate deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
         return der(jsonParser,deserializationContext,null);
     }
 
@@ -24,11 +23,11 @@ public class JsonLocalDateTimeDeserializer extends JsonDeserializer<LocalDateTim
         return der(jsonParser,ctxt,typeDeserializer);
     }
 
-    private LocalDateTime der(JsonParser jsonParser, DeserializationContext context, TypeDeserializer typeDeserializer) throws IOException {
+    private LocalDate der(JsonParser jsonParser, DeserializationContext context, TypeDeserializer typeDeserializer) throws IOException {
         String dateStr = jsonParser.getText();
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            LocalDateTime d = DateUtils.stringToLocalDateTime(dateStr);
+            LocalDate d = DateUtils.stringToLocalDate(dateStr);
             return d;
         } catch (Exception e) {
             e.printStackTrace();

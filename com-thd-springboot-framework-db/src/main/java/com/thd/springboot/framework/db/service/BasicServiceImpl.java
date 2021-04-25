@@ -64,6 +64,11 @@ public abstract class BasicServiceImpl<T extends BasicEntity> implements  BasicS
     }
 
     @Override
+    public void deleteLogicByIds(List<Object> idList){
+        this.getMapper().deleteLogicByIds(idList);
+    };
+
+    @Override
     public Integer update(T entity) {
         if(entity.getModifyTime() == null){
             entity.setModifyTime(new Date());

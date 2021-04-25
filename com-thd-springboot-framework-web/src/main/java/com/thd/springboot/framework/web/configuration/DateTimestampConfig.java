@@ -1,18 +1,10 @@
-package com.thd.springboot.framework.configuration;
+package com.thd.springboot.framework.web.configuration;
 
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.thd.springboot.framework.converts.DateConverter;
-import com.thd.springboot.framework.converts.LocalDateConverter;
-import com.thd.springboot.framework.converts.LocalDateTimeConverter;
-import com.thd.springboot.framework.converts.TimestampConverter;
-import com.thd.springboot.framework.jackson.jsondeserializers.JsonDateDeserializer;
-import com.thd.springboot.framework.jackson.jsondeserializers.JsonTimestampDeserializer;
-import com.thd.springboot.framework.jackson.jsonserializers.JsonDateSerializer;
-import com.thd.springboot.framework.jackson.jsonserializers.JsonTimestampSerializer;
+import com.thd.springboot.framework.web.converts.DateConverter;
+import com.thd.springboot.framework.web.converts.LocalDateConverter;
+import com.thd.springboot.framework.web.converts.LocalDateTimeConverter;
+import com.thd.springboot.framework.web.converts.TimestampConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;

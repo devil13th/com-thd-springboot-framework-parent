@@ -1,4 +1,4 @@
-package com.thd.springboot.framework.interceptor;
+package com.thd.springboot.framework.web.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

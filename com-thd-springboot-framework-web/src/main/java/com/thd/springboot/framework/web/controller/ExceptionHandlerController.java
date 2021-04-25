@@ -1,4 +1,4 @@
-package com.thd.springboot.framework.web;
+package com.thd.springboot.framework.web.controller;
 
 import com.thd.springboot.framework.MyException;
 import com.thd.springboot.framework.model.Message;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * com.thd.springboot.framework.web.ExceptionHandlerController
+ * com.thd.springboot.framework.web.controller.ExceptionHandlerController
  *
  * @author: wanglei62
  * @DATE: 2020/9/15 15:42

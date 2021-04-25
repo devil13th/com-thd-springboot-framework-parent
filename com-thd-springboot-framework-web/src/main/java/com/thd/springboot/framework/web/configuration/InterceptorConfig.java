@@ -1,6 +1,6 @@
-package com.thd.springboot.framework.configuration;
+package com.thd.springboot.framework.web.configuration;
 
-import com.thd.springboot.framework.interceptor.WebInterceptor;
+import com.thd.springboot.framework.web.interceptor.WebInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

@@ -1,4 +1,4 @@
-package com.thd.springboot.framework.web;
+package com.thd.springboot.framework.web.controller;
 
 import com.thd.springboot.framework.constants.CommonConstants;
 import com.thd.springboot.framework.model.Message;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * com.thd.springboot.framework.web.BasicController
+ * com.thd.springboot.framework.web.controller.BasicController
  *
  * @author: wanglei62
  * @DATE: 2020/1/20 17:58

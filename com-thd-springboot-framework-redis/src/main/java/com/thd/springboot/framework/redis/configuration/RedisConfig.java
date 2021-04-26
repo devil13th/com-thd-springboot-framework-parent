@@ -1,12 +1,18 @@
 package com.thd.springboot.framework.redis.configuration;
 
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +27,9 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * com.thd.springboot.framework.redis.configuration.Configuration
@@ -84,6 +93,9 @@ public class RedisConfig {
 
         /**
          * 特别注意这个配置
+         *
+         * 将会为(String、Boolean、Integer、Double)除外的其他类型及非final类型的数组添加反序列化所需要的类型
+         *
          * 此项必须配置，否则反序列化会报java.lang.ClassCastException: java.util.LinkedHashMap cannot be cast to XXX
          * 因为反序列化时候都是转换成Map类型
          *
@@ -93,16 +105,27 @@ public class RedisConfig {
          * 否则会报错 Type id handling not implemented for type XXX
          */
         objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
-
-        // 解决localdate反序列化报错
-//        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-//        objectMapper.registerModule(new JavaTimeModule());
-
         // null属性不进行序列化
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        // 设置在反序列化时忽略在JSON字符串中存在，而在Java中不存在的属性
-        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-//        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+        // 自动检测所有类的public setter方法
+        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+
+
+        //针对于JDK新时间类。序列化时带有T的问题，自定义格式化字符串
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        objectMapper.registerModule(javaTimeModule);
+
+        JavaTimeModule javaTimeModuleForLocalDate = new JavaTimeModule();
+        javaTimeModuleForLocalDate.addSerializer(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        javaTimeModuleForLocalDate.addDeserializer(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        objectMapper.registerModule(javaTimeModuleForLocalDate);
+
+        // 屏蔽默认的时间序列化
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        objectMapper.disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
+
 
         // Jackson2JsonRedisSerializer内部是通过ObjectMapper来进行序列化和反序列化的,所以要设置ObjectMapper
         jackson2JsonRedisSerializer.setObjectMapper(objectMapper);

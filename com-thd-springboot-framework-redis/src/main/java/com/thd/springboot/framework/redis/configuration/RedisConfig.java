@@ -23,8 +23,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -40,6 +38,7 @@ import java.time.format.DateTimeFormatter;
 @Configuration
 public class RedisConfig {
     private Logger log = LoggerFactory.getLogger(this.getClass());
+    /*
     @Value("${spring.redis.host}")
     private String host;
 
@@ -55,8 +54,8 @@ public class RedisConfig {
     @Value("${spring.redis.jedis.pool.max-wait}")
     private long maxWaitMillis;
 
-//    @Value("${spring.redis.password}")
-//    private String password;
+    @Value("${spring.redis.password}")
+    private String password;
 
     @Value("${spring.redis.block-when-exhausted}")
     private boolean  blockWhenExhausted;
@@ -76,9 +75,7 @@ public class RedisConfig {
         JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout);
         return jedisPool;
     }
-
-
-
+    */
     @Bean("redisTemplateWithJacksonSer")
     public RedisTemplate<Object, Object> redisTemplateWithJacksonSer(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();

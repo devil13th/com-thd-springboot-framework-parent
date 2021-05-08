@@ -23,7 +23,7 @@ public class WebJackson2ObjectMpperBuilderConfig {
         return jacksonObjectMapperBuilder -> {
             jacksonObjectMapperBuilder.serializationInclusion(JsonInclude.Include.NON_NULL);
             jacksonObjectMapperBuilder.failOnUnknownProperties(false);
-            jacksonObjectMapperBuilder.deserializers(new StringXssDeserializer());
+//            jacksonObjectMapperBuilder.deserializers(new StringXssDeserializer());
 
             //针对于JDK新时间类。序列化时带有T的问题，自定义格式化字符串
             JavaTimeModule javaTimeModule = new JavaTimeModule();

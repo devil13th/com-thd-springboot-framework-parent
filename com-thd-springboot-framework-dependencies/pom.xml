@@ -14,7 +14,8 @@
     <description>Framework Dependencies</description>
 
     <properties>
-        <spring-boot.version>2.1.7.RELEASE</spring-boot.version>
+<!--        <spring-boot.version>2.1.7.RELEASE</spring-boot.version>-->
+        <spring-boot.version>2.3.6.RELEASE</spring-boot.version>
         <druid-spring-boot-starter.version>1.1.20</druid-spring-boot-starter.version>
         <fastjson.version>1.2.62</fastjson.version>
         <lombok.version>1.16.20</lombok.version>
@@ -25,7 +26,7 @@
         <redisson.version>3.11.0</redisson.version>
         <shiro-spring.version>1.5.3</shiro-spring.version>
         <shiro-redis.version>3.1.0</shiro-redis.version>
-        <elasticsearch.version>7.6.2</elasticsearch.version>
+
     </properties>
 
 
@@ -143,26 +144,6 @@
                 <groupId>com.thd.springboot.framework</groupId>
                 <artifactId>com-thd-springboot-framework-shiro</artifactId>
                 <version>${project.version}</version>
-            </dependency>
-
-
-
-
-
-            <dependency>
-                <groupId>org.elasticsearch.client</groupId>
-                <artifactId>elasticsearch-rest-high-level-client</artifactId>
-                <version>${elasticsearch.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.elasticsearch.client</groupId>
-                <artifactId>elasticsearch-rest-client</artifactId>
-                <version>${elasticsearch.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.elasticsearch</groupId>
-                <artifactId>elasticsearch</artifactId>
-                <version>${elasticsearch.version}</version>
             </dependency>
 
 

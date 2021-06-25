@@ -15,7 +15,7 @@
         <module>com-thd-springboot-framework-web</module>
         <module>com-thd-springboot-framework-redis</module>
         <module>com-thd-springboot-framework-generator</module>
-        <module>com-thd-springboot-framework-shiro</module><module>com-thd-springboot-framework-elasticsearch</module>
+        <module>com-thd-springboot-framework-shiro</module><module>com-thd-springboot-framework-elasticsearch</module><module>com-thd-springboot-framework-rabbitmq</module>
     </modules>
     <version>1.0.0-SNAPSHOT</version>
 

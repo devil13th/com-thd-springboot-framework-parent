@@ -1,12 +1,21 @@
 package com.thd.springboot.framework.rabbitmq.configuration;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.thd.springboot.framework.jackson.jsondeserializers.JsonDateDeserializer;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * com.thd.springboot.framework.rabbitmq.configuration.RabbitConfig
@@ -53,6 +62,19 @@ public class RabbitConfig {
                         ": " + replyCode + ", replyText: " + replyText);
             }
         });
+
+
+        Jackson2JsonMessageConverter jackson2JsonMessageConverter = new Jackson2JsonMessageConverter(new ObjectMapper() {{
+            setSerializationInclusion(JsonInclude.Include.NON_NULL);
+            // setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+            configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            registerModule(new SimpleModule().addDeserializer(Date.class, new JsonDateDeserializer()));
+            setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+        }});
+
+
+        // 设置json序列化
+        // rabbitTemplate.setMessageConverter(messageConverter);
 
         return rabbitTemplate;
     }
